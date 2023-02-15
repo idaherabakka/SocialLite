@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "735363925878",
+    "project_id": "sociallite-e2495",
+    "storage_bucket": "sociallite-e2495.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735363925878:android:977ac339a5f0116ac31c57",
+        "android_client_info": {
+          "package_name": "com.example.sociallite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735363925878-jhbglpdrk42si42a4s0eror95je6q1nj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1HUIFBOItaGaC-AHWR6koZ2dQsLJfOWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735363925878-jhbglpdrk42si42a4s0eror95je6q1nj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
