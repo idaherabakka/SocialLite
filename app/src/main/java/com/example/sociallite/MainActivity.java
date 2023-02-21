@@ -3,7 +3,10 @@ package com.example.sociallite;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -15,11 +18,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        register = (TextView) findViewById(R.id.register);
+
+        register.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RegisterUser.class);
+            startActivity(intent);
+        });
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -43,4 +54,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }
