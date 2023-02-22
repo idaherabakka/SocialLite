@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DatabaseActivity extends AppCompatActivity {
-    static FirebaseFirestore db;
+    static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public void DatabaseActivity(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -54,7 +56,7 @@ public class DatabaseActivity extends AppCompatActivity {
     }
     //Delete data
     public static void deleteUser(){
-        db.collection("users").document("3JHDbQDMJJVkrTzGgJ77")
+        db.collection("users").document("E4rrw8ugMPvcQwPciOYR")
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
