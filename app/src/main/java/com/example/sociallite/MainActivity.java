@@ -31,10 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize Firebase
-        FirebaseApp.initializeApp(this);
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         /*Map<String, Object> user = new HashMap<>();
         user.put("first", "Ada");
@@ -60,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseActivity db2 = new DatabaseActivity();
         //db2.deleteUser();
         //db2.read();
-        db2.addUser("test", "add", 1999);
+        db2.addUser("test2", "add", 1999);
 
 
 

@@ -28,7 +28,7 @@ public class DatabaseActivity extends AppCompatActivity {
     public void DatabaseActivity(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     }
 
