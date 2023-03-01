@@ -1,10 +1,12 @@
 package com.example.model;
 
+import java.util.Date;
+
 public class Challenge {
     private String title;
     private String creator;
-    private String deadline;
-    private String date_created;
+    private Date deadline;
+    private Date date_created;
 
     public Challenge(String title, String creator) {
         this.title = title;
@@ -27,19 +29,19 @@ public class Challenge {
         this.creator = creator;
     }
 
-    public String getDeadline() {
+    public Date getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(String deadline) {
+    public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 
-    public String getDate_created() {
+    public Date getDate_created() {
         return date_created;
     }
 
-    public void setDate_created(String date_created) {
+    public void setDate_created(Date date_created) {
         this.date_created = date_created;
     }
 }

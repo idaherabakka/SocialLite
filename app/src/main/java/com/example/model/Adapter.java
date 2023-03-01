@@ -2,7 +2,6 @@ package com.example.model;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,12 +11,12 @@ import com.example.sociallite.R;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
     Context context;
     List<Challenge> challenges;
 
-    public MyAdapter(Context context, List<Challenge> challenges) {
+    public Adapter(Context context, List<Challenge> challenges) {
         this.context = context;
         this.challenges = challenges;
     }
