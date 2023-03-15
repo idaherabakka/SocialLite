@@ -82,7 +82,7 @@ FirebaseAuth mAuth;
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(MainActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                        //Start new activity
+                        startActivity(new Intent(MainActivity.this,RegisterUser.class)); //Må endres til context screen
                     }
                     else{
                         Toast.makeText(MainActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
