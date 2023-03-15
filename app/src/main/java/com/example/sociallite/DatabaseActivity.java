@@ -31,28 +31,27 @@ public class DatabaseActivity extends AppCompatActivity {
     }
 
     //Add data
-    public void addUser(String firstName, String lastName, int born ){
+    public void addUser(User us ) {
         Map<String, Object> user = new HashMap<>();
-        user.put("first", firstName);
-        user.put("last", lastName);
-        user.put("born", born);
+        user.put("first", us.firstname);
+        user.put("last", us.lastname);
+        user.put("born", us.age);
 
         // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection("User").document(us.ID).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
                     }
-                }).addOnFailureListener(new OnFailureListener() {
+                })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_SHORT).show();
+                        Log.w(TAG, "Error writing document", e);
                     }
                 });
     }
-    //Delete data
+        //Delete data
     public static void deleteUser(){
         db.collection("users").document("E4rrw8ugMPvcQwPciOYR")
                 .delete()

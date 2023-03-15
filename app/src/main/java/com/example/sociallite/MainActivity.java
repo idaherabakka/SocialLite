@@ -6,8 +6,10 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,9 +38,12 @@ public class MainActivity extends AppCompatActivity {
         DatabaseActivity db2 = new DatabaseActivity();
         //db2.deleteUser();
         //db2.read();
-        db2.addUser("test2", "add", 1999);
 
+        Button answersBtn = findViewById(R.id.signIn);
+        answersBtn.setOnClickListener(view -> {
+            db2.addUser(new User("123123", "added", 1999,"1","123","dn@hotmail.com"));
 
+        });
 
 
     }
