@@ -21,7 +21,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import android.view.View;
 import android.widget.Button;
 
@@ -41,15 +40,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         DatabaseActivity db2 = new DatabaseActivity();
         //db2.deleteUser();
         //db2.read();
 
         Button answersBtn = findViewById(R.id.signIn);
         answersBtn.setOnClickListener(view -> {
-            db2.addUser(new User("123123", "added", 1999,"1","123","dn@hotmail.com"));
+         //   db2.addUser(new User("123123", "added", 1999,"1","123","dn@hotmail.com"));
 
         });
+
+
+        /*FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("first", "Lisa");
+        user.put("last", "Eliassen");
+        user.put("born", 1999);
+
+        // Add a new document with a generated ID
+        db.collection("users")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+         */
     }
 }
