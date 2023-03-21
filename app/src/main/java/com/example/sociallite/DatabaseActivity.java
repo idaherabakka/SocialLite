@@ -31,7 +31,7 @@ public class DatabaseActivity extends AppCompatActivity {
     }
 
     //Add data
-    public void addUser(User us ) {
+    public void addChallenge(User us ) {
         Map<String, Object> user = new HashMap<>();
         user.put("first", us.firstname);
         user.put("last", us.lastname);
