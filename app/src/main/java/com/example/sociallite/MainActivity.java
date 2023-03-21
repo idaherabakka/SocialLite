@@ -66,23 +66,26 @@ FirebaseAuth mAuth;
     }
 
     private void loginUser() {
-        String email = this.email.getText().toString();
-        String password = this.password.getText().toString();
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        String emailLogin = email.getText().toString();
+        String passwordLogin = password.getText().toString();
 
-        if (TextUtils.isEmpty(email)){
-            this.email.setError("Email cannot be empty");
-            this.email.requestFocus();
-        }else if (TextUtils.isEmpty(password)){
-            this.password.setError("Password cannot be empty");
-            this.password.requestFocus();
+        if (TextUtils.isEmpty(emailLogin)){
+            email.setError("Email cannot be empty");
+            email.requestFocus();
+        }else if (TextUtils.isEmpty(passwordLogin)){
+            password.setError("Password cannot be empty");
+            password.requestFocus();
         }
         else {
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(emailLogin,passwordLogin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(MainActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                         //Start new activity
+                        startActivity(new Intent(MainActivity.this,OverviewActivity.class));
                     }
                     else{
                         Toast.makeText(MainActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
