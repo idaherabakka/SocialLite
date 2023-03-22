@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.model.Challenge;
+import com.example.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,32 +34,9 @@ public class FirebaseDBService extends AppCompatActivity {
 
     public void addUser(User u ) {
         Map<String, Object> user = new HashMap<>();
-        user.put("first", u.getFirstname());
-        user.put("last", u.getLastname());
-        user.put("email", u.getEmail());
-
-        // Add a new document with a generated ID
-        db.collection("User").document(u.ID).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
-    }
-
-    //Add challenge
-    public void addChallenge(Challenge challengeObj) {
-        Map<String, Object> challenge = new HashMap<>();
-        challenge.put("title", challengeObj.getTitle());
-        challenge.put("creator", challengeObj.getCreator());
-        challenge.put("deadline", challengeObj.getDeadline());
-        challenge.put("created", challengeObj.getDate_created());
+        user.put("first", us.firstname);
+        user.put("last", us.lastname);
+        user.put("born", us.age);
 
         // Add a new document with a generated ID
         db.collection("User").document(us.ID).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {

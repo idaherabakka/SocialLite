@@ -1,16 +1,37 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Challenge {
+    private String id;
     private String title;
     private String creator;
     private Date deadline;
     private Date date_created;
 
+    private List<String> participants;
+
     public Challenge(String title, String creator) {
         this.title = title;
         this.creator = creator;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<String> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<String> participants) {
+        this.participants = participants;
     }
 
     public String getTitle() {
@@ -43,5 +64,12 @@ public class Challenge {
 
     public void setDate_created(Date date_created) {
         this.date_created = date_created;
+    }
+
+    public void addParticipant(String participantId) {
+        participants.add(participantId);
+    }
+    public void removeParticipant(String participantId) {
+        participants.remove(participantId);
     }
 }

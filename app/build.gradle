@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.appdistribution'
 }
 
 android {
@@ -16,9 +17,20 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        release {
+            storeFile file("/Users/mariabonde/inf221/keystore.jks")
+            storePassword "dat251sbeste"
+            keyAlias "keydat251"
+            keyPassword "dat251sbeste"
+        }
+    }
 
     buildTypes {
         release {
+            firebaseAppDistribution {
+                testers="mariabonde99@gmail.com"
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
