@@ -17,9 +17,10 @@ public class User {
 
     FirebaseAuth mAuth;
 
-    public User() {
-        mAuth = FirebaseAuth.getInstance();
+    public User(FirebaseAuth mAuth) {
+        this.mAuth = mAuth;
         username = mAuth.getCurrentUser().getDisplayName();
+        email = mAuth.getCurrentUser().getEmail();
     }
 
     public User(String firstname, String lastname, int Age, String ID) {
@@ -31,5 +32,9 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
