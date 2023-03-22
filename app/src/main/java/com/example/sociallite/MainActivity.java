@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 FirebaseAuth mAuth;
     EditText email;
     EditText password;
+    String emailLogin, passwordLogin;
     TextView registerUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +51,24 @@ FirebaseAuth mAuth;
         mAuth = FirebaseAuth.getInstance();
         registerUser = findViewById(R.id.register);
 
-
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
         DatabaseActivity db2 = new DatabaseActivity();
         //db2.deleteUser();
         //db2.read();
 
         Button loginBtn = findViewById(R.id.signIn);
         loginBtn.setOnClickListener(view -> {
-            loginUser();
+            if (TextUtils.isEmpty(email.getText())){
+                this.email.setError("Email cannot be empty");
+                this.email.requestFocus();
+            }else if (TextUtils.isEmpty(password.getText())){
+                this.password.setError("Password cannot be empty");
+                this.password.requestFocus();
+            }
+            else {
+                loginUser();
+            }
         });
         registerUser.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this,RegisterUser.class));
@@ -66,23 +77,14 @@ FirebaseAuth mAuth;
     }
 
     private void loginUser() {
-        String email = this.email.getText().toString();
-        String password = this.password.getText().toString();
-
-        if (TextUtils.isEmpty(email)){
-            this.email.setError("Email cannot be empty");
-            this.email.requestFocus();
-        }else if (TextUtils.isEmpty(password)){
-            this.password.setError("Password cannot be empty");
-            this.password.requestFocus();
-        }
-        else {
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(MainActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this,RegisterUser.class)); //Må endres til context screen
+                       TextView message = findViewById(R.id.welcome_message);
+                       message.setText("Welcome, user!");
+                        startActivity(new Intent(MainActivity.this,OverviewActivity.class)); //Må endres til context screen
                     }
                     else{
                         Toast.makeText(MainActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -90,7 +92,7 @@ FirebaseAuth mAuth;
                     }
                 }
             });
-        }
+
         /*FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Map<String, Object> user = new HashMap<>();
