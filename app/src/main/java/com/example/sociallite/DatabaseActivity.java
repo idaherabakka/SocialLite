@@ -4,17 +4,15 @@ import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,7 +33,6 @@ public class DatabaseActivity extends AppCompatActivity {
         Map<String, Object> user = new HashMap<>();
         user.put("first", us.firstname);
         user.put("last", us.lastname);
-        user.put("born", us.age);
 
         // Add a new document with a generated ID
         db.collection("User").document(us.ID).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
