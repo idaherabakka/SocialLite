@@ -1,9 +1,19 @@
 package com.example.model;
 
 public class Points {
+
+    private String id;
     private int challengePoints;
     private String challengeId;
-    private String userId;
+    private String userID;
+
+    public String getID() {
+        return id;
+    }
+
+    public void setID(String id) {
+        this.id = id;
+    }
 
     public int getChallengePoints() {
         return challengePoints;
@@ -22,10 +32,10 @@ public class Points {
     }
 
     public String getUserId() {
-        return userId;
+        return userID;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        this.userID = userId;
     }
 }
