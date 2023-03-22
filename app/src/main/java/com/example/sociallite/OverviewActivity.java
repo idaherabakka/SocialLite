@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.model.Challenge;
-import com.example.model.Adapter;
+import com.example.service.ChallengeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class OverviewActivity extends AppCompatActivity {
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new Adapter(getApplicationContext(),challenges));
+        recyclerView.setAdapter(new ChallengeAdapter(getApplicationContext(),challenges));
 
         Button profileButton = findViewById(R.id.MyProfile);
         profileButton.setOnClickListener(view -> {

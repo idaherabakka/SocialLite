@@ -1,4 +1,4 @@
-package com.example.sociallite;
+package com.example.model;
 
 
 import com.google.firebase.auth.FirebaseAuth;
