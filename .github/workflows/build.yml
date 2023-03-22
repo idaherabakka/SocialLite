@@ -5,6 +5,7 @@ on:
     branches: [ "SonarQube" ]
   pull_request:
     branches: [ "SonarQube" ]
+# Test
 
 jobs:
   build:
