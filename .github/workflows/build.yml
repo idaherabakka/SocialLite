@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ "SonarQube" ]
+    branches: [ "master", "SonarQube"]
   pull_request:
-    branches: [ "SonarQube" ]
+    branches: [ "master" ]
 # Test
 
 jobs:
