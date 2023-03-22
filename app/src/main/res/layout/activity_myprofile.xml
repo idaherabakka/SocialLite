@@ -8,7 +8,7 @@
     >
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/email"
         android:textColor="@color/white"
         android:layout_width="134dp"
         android:layout_height="43dp"

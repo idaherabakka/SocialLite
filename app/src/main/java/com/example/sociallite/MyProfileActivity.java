@@ -29,8 +29,8 @@ public class MyProfileActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.title);
         title.setText("My Profile");
 
-        TextView username = findViewById(R.id.username);
-        username.setText(currentUser.getEmail());
+        TextView email = findViewById(R.id.email);
+        email.setText(currentUser.getEmail());
 
         Button profileButton = findViewById(R.id.back);
         profileButton.setOnClickListener(view -> {
