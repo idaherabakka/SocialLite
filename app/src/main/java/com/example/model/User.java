@@ -1,4 +1,4 @@
-package com.example.sociallite;
+package com.example.model;
 
 public class User {
     public String firstname;
