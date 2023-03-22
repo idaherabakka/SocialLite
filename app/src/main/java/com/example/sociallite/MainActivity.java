@@ -43,18 +43,14 @@ FirebaseAuth mAuth;
     EditText email;
     EditText password;
     TextView registerUser;
+    TextView forgotPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         registerUser = findViewById(R.id.register);
-
-
-        DatabaseActivity db2 = new DatabaseActivity();
-        //db2.deleteUser();
-        //db2.read();
-
+        forgotPassword = findViewById(R.id.forgotPassword);
         Button loginBtn = findViewById(R.id.signIn);
         loginBtn.setOnClickListener(view -> {
             loginUser();
@@ -62,7 +58,9 @@ FirebaseAuth mAuth;
         registerUser.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this,RegisterUser.class));
         });
-
+        forgotPassword.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this,ForgotPassword.class));
+        });
     }
 
     private void loginUser() {
