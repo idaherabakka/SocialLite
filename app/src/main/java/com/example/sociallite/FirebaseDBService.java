@@ -91,7 +91,7 @@ public class FirebaseDBService extends AppCompatActivity {
         user.put("challengeID", points.getChallengeId());
         user.put("userID", points.getUserId());
 
-        db.collection("Challenge").document(points.getID()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("Points").document(points.getID()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
