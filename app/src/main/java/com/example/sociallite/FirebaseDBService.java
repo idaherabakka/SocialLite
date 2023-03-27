@@ -26,7 +26,7 @@ import java.util.Map;
 public class FirebaseDBService extends AppCompatActivity {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public FirebaseDBService(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
 
@@ -106,7 +106,7 @@ public class FirebaseDBService extends AppCompatActivity {
     }
 
     // Update a field in a document that is not an array, needs collection name, id you wish to update, field and its value you wish to update
-    public static void updateDocument(String collectionName, String idToBeUpdated, String fieldToBeUpdated, String newValueForField) {
+    public void updateDocument(String collectionName, String idToBeUpdated, String fieldToBeUpdated, String newValueForField) {
 
         // The document that needs to be updated
         DocumentReference toBeUpdatedDocument = db.collection(collectionName).document(idToBeUpdated);
@@ -128,7 +128,7 @@ public class FirebaseDBService extends AppCompatActivity {
     }
 
     // Update a field in a document that is an array, needs collection name, id you wish you update, field and its value you wish to update and weather the action is an add or delete
-    public static void updateDocumentArrayField(String collectionName, String toBeUpdatedID, String fieldToBeUpdated, String valueForField, String addOrDelete) {
+    public void updateDocumentArrayField(String collectionName, String toBeUpdatedID, String fieldToBeUpdated, String valueForField, String addOrDelete) {
 
         // The document that needs to be updated
         DocumentReference toBeUpdatedDocument = db.collection(collectionName).document(toBeUpdatedID);
@@ -146,7 +146,7 @@ public class FirebaseDBService extends AppCompatActivity {
     }
 
     // Delete data, based on collection name and chosen ID
-    public static void deleteDocument(String collectionName, String chosenID){
+    public void deleteDocument(String collectionName, String chosenID){
         db.collection(collectionName).document(chosenID)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
