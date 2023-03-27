@@ -26,8 +26,7 @@ import java.util.Map;
 public class FirebaseDBService extends AppCompatActivity {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    // Rename this to FirebaseDBService or onCreate???
-    public void DatabaseActivity(Bundle savedInstanceState){
+    public FirebaseDBService(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
 
