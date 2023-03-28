@@ -25,7 +25,7 @@ public class User {
         email = mAuth.getCurrentUser().getEmail();
     }
 
-    public User(String firstname, String lastname, int Age, String ID) {
+
     private ArrayList<String> createdChallenges;
     private ArrayList<String> joinedChallenges;
 
@@ -37,10 +37,6 @@ public class User {
 
     public String getUsername() {
         return username;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getFirstname() {
