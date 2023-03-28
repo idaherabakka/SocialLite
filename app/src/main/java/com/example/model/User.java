@@ -1,14 +1,30 @@
 package com.example.model;
 
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User {
+
+    String username;
     public String firstname;
     public String lastname;
     public String ID;
+
     private String password;
+
     private String email;
+
+    FirebaseAuth mAuth;
+
+    public User(FirebaseAuth mAuth) {
+        this.mAuth = mAuth;
+        username = mAuth.getCurrentUser().getDisplayName();
+        email = mAuth.getCurrentUser().getEmail();
+    }
+
 
     private ArrayList<String> createdChallenges;
     private ArrayList<String> joinedChallenges;
@@ -17,8 +33,10 @@ public class User {
         this.firstname = firstname;
         this.lastname = lastname;
         this.ID = ID;
-        this.password = password;
-        this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getFirstname() {

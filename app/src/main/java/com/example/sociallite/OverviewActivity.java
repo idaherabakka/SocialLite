@@ -1,6 +1,8 @@
 package com.example.sociallite;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,22 +26,15 @@ public class OverviewActivity extends AppCompatActivity {
         List<Challenge> challenges = new ArrayList<>();
         challenges.add(new Challenge("Walk 30km", "Lisa"));
         challenges.add(new Challenge("Save 50k", "Thomas"));
-        challenges.add(new Challenge("Go to gym", "Lisa"));
-        challenges.add(new Challenge("Walk 30km", "Lisa"));
-        challenges.add(new Challenge("Save 50k", "Thomas"));
-        challenges.add(new Challenge("Go to gym", "Lisa"));
-        challenges.add(new Challenge("Walk 30km", "Lisa"));
-        challenges.add(new Challenge("Save 50k", "Thomas"));
-        challenges.add(new Challenge("Go to gym", "Lisa"));
-        challenges.add(new Challenge("Walk 30km", "Lisa"));
-        challenges.add(new Challenge("Save 50k", "Thomas"));
-        challenges.add(new Challenge("Go to gym", "Lisa"));
-        challenges.add(new Challenge("Walk 30km", "Lisa"));
-        challenges.add(new Challenge("Save 50k", "Thomas"));
-        challenges.add(new Challenge("Go to gym", "Lisa"));
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ChallengeAdapter(getApplicationContext(),challenges));
+
+        Button profileButton = findViewById(R.id.MyProfile);
+        profileButton.setOnClickListener(view -> {
+            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));;
+        });
 
     }
 
