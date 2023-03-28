@@ -9,8 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.model.Adapter;
+
 import com.example.model.Challenge;
+import com.example.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
