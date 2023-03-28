@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: reactivecircus/android-emulator-runner@v2
-    - name : emulator espresso test
-      with:
-        api-level: 23
-        target: default
-        arch: x86
-        profile: Nexus 6
-        script: ./gradlew connectedCheck --stacktrace
+    - name: Start Android emulator
+      uses: reactivecircus/android-emulator-runner@v2
+    - name: Run Espresso tests
+      run: |
+        ./gradlew connectedCheck --stacktrace
+      env:
+        ANDROID_HOME: ${{ env.ANDROID_HOME }}
+        JAVA_HOME: ${{ env.JAVA_HOME }}
