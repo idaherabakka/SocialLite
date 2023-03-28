@@ -26,10 +26,9 @@ import java.util.Map;
 public class FirebaseDBService extends AppCompatActivity {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-    }
+    public void FirebaseDBService() {
 
+    }
     public FirebaseFirestore getDataBase(){
         return db;
     }
@@ -40,7 +39,6 @@ public class FirebaseDBService extends AppCompatActivity {
         user.put("id", u.getID());
         user.put("first", u.getFirstname());
         user.put("last", u.getLastname());
-        //user.put("password", u.getPassword());
         user.put("email", u.getEmail());
         user.put("challengesCreated", u.getCreatedChallenges());
         user.put("challengesJoined", u.getJoinedChallenges());
@@ -61,15 +59,15 @@ public class FirebaseDBService extends AppCompatActivity {
 
     // Add challenge OR overwrite challenge completely with a certain ID
     public void addChallenge(Challenge challenge ) {
-        Map<String, Object> user = new HashMap<>();
-        user.put("id", challenge.getID());
-        user.put("title", challenge.getTitle());
-        user.put("creator", challenge.getCreator());
-        user.put("deadline", challenge.getDeadline());
-        user.put("date_created", challenge.getDate_created());
-        user.put("participants", challenge.getParticipants());
+        Map<String, Object> challenges = new HashMap<>();
+        challenges.put("id", challenge.getID());
+        challenges.put("title", challenge.getTitle());
+        challenges.put("creator", challenge.getCreator());
+        challenges.put("deadline", challenge.getDeadline());
+        challenges.put("date_created", challenge.getDate_created());
+        challenges.put("participants", challenge.getParticipants());
 
-        db.collection("Challenge").document(challenge.getID()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("Challenge").document(challenge.getID()).set(challenges).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
@@ -85,13 +83,13 @@ public class FirebaseDBService extends AppCompatActivity {
 
     // Add points OR overwrite points completely with a certain ID
     public void addPoints(Points points) {
-        Map<String, Object> user = new HashMap<>();
-        user.put("id", points.getID());
-        user.put("challengePoints", points.getChallengePoints());
-        user.put("challengeID", points.getChallengeId());
-        user.put("userID", points.getUserId());
+        Map<String, Object> point = new HashMap<>();
+        point.put("id", points.getID());
+        point.put("challengePoints", points.getChallengePoints());
+        point.put("challengeID", points.getChallengeId());
+        point.put("userID", points.getUserId());
 
-        db.collection("Points").document(points.getID()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("Points").document(points.getID()).set(point).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
