@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     TextView registerUser;
+    TextView forgotPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-
+        forgotPassword = findViewById(R.id.forgotPassword);
 
         Button loginBtn = findViewById(R.id.signIn);
         loginBtn.setOnClickListener(view -> {
@@ -49,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         registerUser.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this,RegisterUser.class));
         });
-
+        forgotPassword.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this,ForgotPassword.class));
+        });
     }
 
     private void loginUser() {
