@@ -12,9 +12,6 @@ public class User {
         return ID;
     }
 
-    public void setID(UUID ID) {
-        this.ID = ID;
-    }
 
     public UUID ID;
     private String password;
@@ -22,6 +19,7 @@ public class User {
 
     private ArrayList<String> createdChallenges;
     private ArrayList<String> joinedChallenges;
+
 
     public User(String firstname, String lastname, String password, String email) {
         this.firstname = firstname;
