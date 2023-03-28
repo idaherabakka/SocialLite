@@ -1,4 +1,4 @@
-package com.example.sociallite;
+package com.example.service;
 
 import static android.content.ContentValues.TAG;
 
@@ -19,6 +19,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +41,7 @@ public class FirebaseDBService extends AppCompatActivity {
         user.put("id", u.getID());
         user.put("first", u.getFirstname());
         user.put("last", u.getLastname());
+        //email as id
         user.put("email", u.getEmail());
         user.put("challengesCreated", u.getCreatedChallenges());
         user.put("challengesJoined", u.getJoinedChallenges());
@@ -160,6 +163,24 @@ public class FirebaseDBService extends AppCompatActivity {
                     }
                 });
 
+    }
+
+
+    public void readAll(String collectionName){
+        db.collection(collectionName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     // Read data, based on collection name and chosen ID
