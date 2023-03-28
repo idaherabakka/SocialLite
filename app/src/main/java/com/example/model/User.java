@@ -2,21 +2,31 @@ package com.example.model;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class User {
     public String firstname;
     public String lastname;
-    public String ID;
+
+    public UUID getID() {
+        return ID;
+    }
+
+    public void setID(UUID ID) {
+        this.ID = ID;
+    }
+
+    public UUID ID;
     private String password;
     private String email;
 
     private ArrayList<String> createdChallenges;
     private ArrayList<String> joinedChallenges;
 
-    public User(String firstname, String lastname, String ID, String password, String email) {
+    public User(String firstname, String lastname, String password, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.ID = ID;
+        this.ID = UUID.randomUUID();
         this.password = password;
         this.email = email;
     }
@@ -35,14 +45,6 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public String getPassword() {
