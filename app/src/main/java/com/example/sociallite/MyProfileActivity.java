@@ -6,16 +6,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.model.Challenge;
-import com.example.model.User;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MyProfileActivity extends AppCompatActivity {
 
@@ -25,17 +18,22 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_myprofile);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String currentUser = mAuth.getCurrentUser().getEmail();
+        String userEmail = mAuth.getCurrentUser().getEmail();
 
-        TextView title = findViewById(R.id.title);
-        title.setText("My Profile");
+        TextView nameText = findViewById(R.id.name);
+        nameText.setText("Firstname Lastname");
 
-        TextView email = findViewById(R.id.email);
-        email.setText(currentUser);
+        TextView emailText = findViewById(R.id.email);
+        emailText.setText(userEmail);
 
         Button profileButton = findViewById(R.id.back);
         profileButton.setOnClickListener(view -> {
             startActivity(new Intent(MyProfileActivity.this,OverviewActivity.class));;
+        });
+
+        Button editProfileButton = findViewById(R.id.edit);
+        editProfileButton.setOnClickListener(view -> {
+            startActivity(new Intent(MyProfileActivity.this,EditProfileActivity.class));;
         });
 
     }

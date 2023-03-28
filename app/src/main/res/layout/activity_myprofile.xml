@@ -4,36 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     >
 
     <TextView
         android:id="@+id/email"
-        android:textColor="@color/white"
-        android:layout_width="134dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back" />
+        android:layout_width="188dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="9dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/ProfilePicture"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
         android:text="Back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/title"
-        android:textColor="@color/white"
+        android:id="@+id/name"
+        android:layout_width="188dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/ProfilePicture"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="40dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ProfilePicture"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:padding="5dp"
+        android:src="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        app:strokeColor="#FFA883"
+        app:strokeWidth="5dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
