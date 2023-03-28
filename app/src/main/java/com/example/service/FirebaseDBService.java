@@ -25,10 +25,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FirebaseDBService extends AppCompatActivity {
+public class FirebaseDBService {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public void FirebaseDBService() {
+    public FirebaseDBService() {
+
 
     }
     public FirebaseFirestore getDataBase(){
