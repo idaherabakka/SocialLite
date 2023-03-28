@@ -33,7 +33,6 @@ public class DatabaseActivity extends AppCompatActivity {
         Map<String, Object> user = new HashMap<>();
         user.put("first", us.firstname);
         user.put("last", us.lastname);
-        user.put("born", us.age);
 
         // Add a new document with a generated ID
         db.collection("User").document(us.ID).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {

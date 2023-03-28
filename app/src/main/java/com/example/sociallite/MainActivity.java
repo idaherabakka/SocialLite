@@ -18,51 +18,49 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
+  FirebaseAuth mAuth;
     EditText email;
     EditText password;
     TextView registerUser;
-    TextView forgotPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         registerUser = findViewById(R.id.register);
-        forgotPassword = findViewById(R.id.forgotPassword);
+
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+
+
         Button loginBtn = findViewById(R.id.signIn);
         loginBtn.setOnClickListener(view -> {
-            loginUser();
+            if (TextUtils.isEmpty(email.getText())){
+                this.email.setError("Email cannot be empty");
+                this.email.requestFocus();
+            }else if (TextUtils.isEmpty(password.getText())){
+                this.password.setError("Password cannot be empty");
+                this.password.requestFocus();
+            }
+            else {
+                loginUser();
+            }
         });
         registerUser.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this,RegisterUser.class));
         });
-        forgotPassword.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity.this,ForgotPassword.class));
-        });
+
     }
 
     private void loginUser() {
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        String emailLogin = email.getText().toString();
-        String passwordLogin = password.getText().toString();
-
-        if (TextUtils.isEmpty(emailLogin)){
-            email.setError("Email cannot be empty");
-            email.requestFocus();
-        }else if (TextUtils.isEmpty(passwordLogin)){
-            password.setError("Password cannot be empty");
-            password.requestFocus();
-        }
-        else {
-            mAuth.signInWithEmailAndPassword(emailLogin,passwordLogin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(MainActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                        //Start new activity
-                        startActivity(new Intent(MainActivity.this,OverviewActivity.class));
+                       TextView message = findViewById(R.id.welcome_message);
+                       message.setText("Welcome, user!");
+                        startActivity(new Intent(MainActivity.this,OverviewActivity.class)); //Må endres til context screen
                     }
                     else{
                         Toast.makeText(MainActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -70,29 +68,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
-        /*FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Lisa");
-        user.put("last", "Eliassen");
-        user.put("born", 1999);
-
-        // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-         */
     }
 }

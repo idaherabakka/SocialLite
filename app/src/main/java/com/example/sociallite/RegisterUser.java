@@ -33,7 +33,6 @@ public class RegisterUser extends AppCompatActivity {
 
         register.setOnClickListener(view ->{
             creatUser();
-            startActivity(new Intent(RegisterUser.this,MainActivity.class));
         });
     }
 

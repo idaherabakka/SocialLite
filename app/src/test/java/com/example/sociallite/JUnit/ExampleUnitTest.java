@@ -1,4 +1,4 @@
-package com.example.sociallite;
+package com.example.sociallite.JUnit;
 
 import org.junit.Test;
 
