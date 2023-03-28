@@ -1,7 +1,4 @@
 package com.example.sociallite.EspressoTest;
-
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -47,6 +44,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
 
+import com.example.sociallite.ForgotPassword;
 import com.example.sociallite.MainActivity;
 import com.example.sociallite.OverviewActivity;
 import com.example.sociallite.R;
@@ -58,35 +56,19 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainActivityTest {
-
+public class ForgotPasswordTest {
     @Rule
-    public ActivityScenarioRule<MainActivity> mainActivityRule = new ActivityScenarioRule<>(MainActivity.class);
-@Before
-public void setUp(){
-    Espresso.closeSoftKeyboard();
-    closeSoftKeyboard();
-    ViewActions.clearGlobalAssertions();
-}
+    public ActivityScenarioRule<ForgotPassword> forgotPasswordActivityRule = new ActivityScenarioRule<>(ForgotPassword.class);
 
     @Test
-    public void loginTest() {
-        // email and password for test user
-        onView(withId(R.id.email)).perform(replaceText("123@123.no"));
-        onView(withId(R.id.password)).perform(replaceText("123456"));
-
-        // Click the login button to log in
-        onView(withId(R.id.signIn)).perform(click());
+    public void testResetButton(){
+        onView(withId(R.id.forgotPasswordBtn)).check(matches(isDisplayed()));
+        onView(withId(R.id.forgotPasswordBtn)).perform(click());
     }
-
     @Test
-    public void testRegisterButton() {
-        onView(withId(R.id.register)).perform(click());
-    }
-
-    @Test
-    public void testForgotPassword() {
-
-    onView(withId(R.id.forgotPassword)).perform(click());
+    public void sendResetMail(){
+        onView(withId(R.id.email)).perform(typeText("123@123.no"));
+        closeSoftKeyboard();
+        onView(withId(R.id.forgotPasswordBtn)).perform(click());
     }
 }
