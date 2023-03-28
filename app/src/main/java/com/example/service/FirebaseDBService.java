@@ -27,8 +27,7 @@ import java.util.Map;
 
 public class FirebaseDBService {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    public void FirebaseDBService() {
+    public FirebaseDBService() {
 
     }
     public FirebaseFirestore getDataBase(){
