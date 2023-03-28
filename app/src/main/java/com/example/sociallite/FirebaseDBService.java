@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FirebaseDBService extends AppCompatActivity {
+public class FirebaseDBService {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public void FirebaseDBService() {
