@@ -53,9 +53,7 @@ FirebaseAuth mAuth;
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        DatabaseActivity db2 = new DatabaseActivity();
-        //db2.deleteUser();
-        //db2.read();
+
 
         Button loginBtn = findViewById(R.id.signIn);
         loginBtn.setOnClickListener(view -> {
@@ -92,29 +90,5 @@ FirebaseAuth mAuth;
                     }
                 }
             });
-
-        /*FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Lisa");
-        user.put("last", "Eliassen");
-        user.put("born", 1999);
-
-        // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-         */
     }
 }
