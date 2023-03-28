@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.service;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,16 +7,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.model.Challenge;
 import com.example.sociallite.R;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<ViewHolder> {
+public class ChallengeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     Context context;
     List<Challenge> challenges;
 
-    public Adapter(Context context, List<Challenge> challenges) {
+    public ChallengeAdapter(Context context, List<Challenge> challenges) {
         this.context = context;
         this.challenges = challenges;
     }
