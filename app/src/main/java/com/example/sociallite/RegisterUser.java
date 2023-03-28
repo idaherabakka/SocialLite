@@ -14,7 +14,6 @@ import com.example.model.User;
 import com.example.service.FirebaseDBService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -38,11 +37,11 @@ public class RegisterUser extends AppCompatActivity {
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         register.setOnClickListener(view ->{
-            creatUser();
+            createUser();
         });
     }
 
-    private void creatUser() {
+    private void createUser() {
         String email = this.email.getText().toString();
         String password = this.password.getText().toString();
         String firstName = this.firstName.getText().toString();
