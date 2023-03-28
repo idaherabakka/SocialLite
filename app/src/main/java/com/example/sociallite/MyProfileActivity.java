@@ -25,13 +25,13 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_myprofile);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        User currentUser = new User(mAuth);
+        String currentUser = mAuth.getCurrentUser().getEmail();
 
         TextView title = findViewById(R.id.title);
         title.setText("My Profile");
 
         TextView email = findViewById(R.id.email);
-        email.setText(currentUser.getEmail());
+        email.setText(currentUser);
 
         Button profileButton = findViewById(R.id.back);
         profileButton.setOnClickListener(view -> {

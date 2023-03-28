@@ -1,42 +1,32 @@
 package com.example.model;
 
-
-import com.google.firebase.auth.FirebaseAuth;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class User {
-
-    String username;
     public String firstname;
     public String lastname;
-    public String ID;
 
-    private String password;
-
-    private String email;
-
-    FirebaseAuth mAuth;
-
-    public User(FirebaseAuth mAuth) {
-        this.mAuth = mAuth;
-        username = mAuth.getCurrentUser().getDisplayName();
-        email = mAuth.getCurrentUser().getEmail();
+    public UUID getID() {
+        return ID;
     }
 
+
+    public UUID ID;
+    private String password;
+    private String email;
 
     private ArrayList<String> createdChallenges;
     private ArrayList<String> joinedChallenges;
 
-    public User(String firstname, String lastname, String ID, String password, String email) {
+
+    public User(String firstname, String lastname, String password, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.ID = ID;
-    }
-
-    public String getUsername() {
-        return username;
+        this.ID = UUID.randomUUID();
+        this.password = password;
+        this.email = email;
     }
 
     public String getFirstname() {
@@ -53,14 +43,6 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public String getPassword() {
