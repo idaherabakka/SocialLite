@@ -24,13 +24,13 @@ public class RegisterUser extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText firstName;
     EditText lastName;
-    FirebaseDBService db = new FirebaseDBService();
+    FirebaseDBService db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
         mAuth = FirebaseAuth.getInstance();
-
+        db = new FirebaseDBService();
         password = findViewById(R.id.password);
         register = findViewById(R.id.registerUser);
         email = findViewById(R.id.email);
