@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/textView"
+    <EditText
+        android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -21,7 +21,7 @@
 
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/dueDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="248dp"
@@ -111,7 +111,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/Create"
         android:layout_width="137dp"
         android:layout_height="54dp"
         android:layout_marginEnd="36dp"
@@ -125,7 +125,7 @@
 
     <!--android:textColor="#FFA883"-->
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/challengeType"
         android:layout_width="171dp"
         android:layout_height="42dp"
         android:layout_marginTop="508dp"
@@ -135,8 +135,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/inputDescr"
+    <EditText
+        android:id="@+id/Description"
         android:layout_width="261dp"
         android:layout_height="99dp"
         android:layout_marginTop="132dp"
@@ -152,12 +152,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="384dp"
         android:layout_marginEnd="304dp"
+        android:textColor="#FFA883"
         android:text="None"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/DueDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="340dp"

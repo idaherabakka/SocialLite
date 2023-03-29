@@ -36,6 +36,8 @@ public class FirebaseDBService {
         return db;
     }
 
+    //get : return User object
+
     // Add user OR overwrite user completely with a certain ID
     public void addUser(User u ) {
         Map<String, Object> user = new HashMap<>();
@@ -167,6 +169,7 @@ public class FirebaseDBService {
     }
 
 
+    //Read all documents by collectionName
     public void readAll(String collectionName){
         db.collection(collectionName)
                 .get()
