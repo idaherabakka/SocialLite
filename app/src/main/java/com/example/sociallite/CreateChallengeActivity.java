@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,19 +17,19 @@ public class CreateChallengeActivity extends AppCompatActivity {
     EditText title;
     //EditText creator;
     EditText type;
-    EditText dueDate;
+    TextView dueDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createchallenge);
-        title = findViewById(R.id.Title);
+        title = findViewById(R.id.title);
         //FIX
-        String creator = "ida";
-        dueDate = findViewById(R.id.DueDate);
+        String creator = "Ida";
+        dueDate = findViewById(R.id.dueDate);
         //type = findViewById(R.id.ChallengeType);
 
-        Challenge challenge = new Challenge(title, creator);
+        Challenge challenge = new Challenge(this.title.getText().toString(), creator);
 
         Button profileButton = findViewById(R.id.Create);
         /*profileButton.setOnClickListener(
