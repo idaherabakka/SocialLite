@@ -71,7 +71,7 @@ public class RegisterUser extends AppCompatActivity {
                         User user = new User(firstName,lasName,email);
                         db.addUser(user);
                         startActivity(new Intent(RegisterUser.this, MainActivity.class));
-                    }else{
+                    }else {
                         Toast.makeText(RegisterUser.this, "Register failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }

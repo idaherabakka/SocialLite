@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class FirebaseDBService {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    public User user = new User();
     public FirebaseDBService() {
 
 
@@ -202,5 +202,19 @@ public class FirebaseDBService {
                 }
             }
         });
+    }
+    public User getUser(String email){
+        DocumentReference docRef = db.collection("User").document(email);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    user = document.toObject(User.class);
+                }
+            }
+        });
+        return user;
     }
 }

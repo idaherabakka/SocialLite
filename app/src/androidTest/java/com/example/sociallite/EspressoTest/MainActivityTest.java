@@ -20,6 +20,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,6 +51,7 @@ import androidx.test.rule.ActivityTestRule;
 import com.example.sociallite.MainActivity;
 import com.example.sociallite.OverviewActivity;
 import com.example.sociallite.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -75,8 +77,13 @@ public void setUp(){
         onView(withId(R.id.email)).perform(replaceText("123@123.no"));
         onView(withId(R.id.password)).perform(replaceText("123456"));
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
         // Click the login button to log in
         onView(withId(R.id.signIn)).perform(click());
+
+        // Checks that the user is logged in to firebase with the same email
+        Assert.assertEquals("123@123.no",mAuth.getCurrentUser().getEmail());
     }
 
     @Test

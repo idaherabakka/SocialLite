@@ -7,6 +7,13 @@ public class Points {
     private String challengeId;
     private String userID;
 
+    public Points(String id, int challengePoints, String challengeId, String userID) {
+        this.id = id;
+        this.challengePoints = challengePoints;
+        this.challengeId = challengeId;
+        this.userID = userID;
+    }
+
     public String getID() {
         return id;
     }

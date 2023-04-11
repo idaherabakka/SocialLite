@@ -69,7 +69,7 @@ public class OverviewActivityTest {
     public ActivityScenarioRule<OverviewActivity> overviewActivityActivityScenarioRule = new ActivityScenarioRule<>(OverviewActivity.class);
     @Test
     public void testMyProfileButton(){
-        onView(withId(R.id.MyProfile)).check(isDisplayed());
+        onView(withId(R.id.MyProfile)).check(matches(isDisplayed()));
         onView(withId(R.id.MyProfile)).perform(click());
     }
 }

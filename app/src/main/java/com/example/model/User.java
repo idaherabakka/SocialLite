@@ -8,6 +8,10 @@ public class User {
     public String firstname;
     public String lastname;
 
+    public User() {
+
+    }
+
     public UUID getID() {
         return ID;
     }
