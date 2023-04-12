@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/join"
+        android:id="@+id/Join"
         android:layout_width="137dp"
         android:layout_height="54dp"
         android:layout_marginStart="36dp"
@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/create"
+        android:id="@+id/Create"
         android:layout_width="137dp"
         android:layout_height="54dp"
         android:layout_marginEnd="36dp"

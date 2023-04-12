@@ -11,6 +11,16 @@ public class Challenge {
     private Date deadline;
     private Date date_created;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
+
     private List<String> participants;
 
     public Challenge(String title, String creator) {
@@ -18,6 +28,7 @@ public class Challenge {
         this.creator = creator;
     }
 
+    public Challenge() {}
     public String getID() {
         return id;
     }
