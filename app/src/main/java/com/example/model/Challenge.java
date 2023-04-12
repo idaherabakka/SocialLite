@@ -28,6 +28,7 @@ public class Challenge {
         this.creator = creator;
     }
 
+    public Challenge() {}
     public String getID() {
         return id;
     }

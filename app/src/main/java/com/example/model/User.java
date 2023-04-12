@@ -7,13 +7,6 @@ import java.util.UUID;
 public class User {
     public String firstname;
     public String lastname;
-
-    public UUID getID() {
-        return ID;
-    }
-
-
-    public UUID ID;
     private String email;
 
     private ArrayList<String> createdChallenges;
@@ -23,11 +16,11 @@ public class User {
     public User(String firstname, String lastname, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.ID = UUID.randomUUID();
         this.email = email;
         this.createdChallenges = new ArrayList<>();
         this.joinedChallenges = new ArrayList<>();
     }
+    public User(){}
 
     public String getFirstname() {
         return firstname;
