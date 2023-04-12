@@ -36,14 +36,13 @@ public class OverviewActivity extends AppCompatActivity {
             startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));;
         });
 
-        Button joinButton = findViewById(R.id.join);
-        joinButton.setOnClickListener(view -> {
-            startActivity(new Intent(OverviewActivity.this,JoinChallengeActivity.class));;
-        });
-
         Button createButton = findViewById(R.id.Create);
         profileButton.setOnClickListener(view -> {
             startActivity(new Intent(OverviewActivity.this,CreateChallengeActivity.class));;
+
+        Button joinButton = findViewById(R.id.join);
+        joinButton.setOnClickListener(view -> {
+            startActivity(new Intent(OverviewActivity.this,JoinChallengeActivity.class));;
         });
 
     }
