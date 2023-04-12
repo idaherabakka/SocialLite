@@ -39,6 +39,10 @@ public class OverviewActivity extends AppCompatActivity {
         Button createButton = findViewById(R.id.Create);
         profileButton.setOnClickListener(view -> {
             startActivity(new Intent(OverviewActivity.this,CreateChallengeActivity.class));;
+
+        Button joinButton = findViewById(R.id.join);
+        joinButton.setOnClickListener(view -> {
+            startActivity(new Intent(OverviewActivity.this,JoinChallengeActivity.class));;
         });
 
     }
