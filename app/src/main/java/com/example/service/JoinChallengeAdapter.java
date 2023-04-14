@@ -12,12 +12,11 @@ import com.example.sociallite.R;
 
 import java.util.List;
 
-public class ChallengeAdapter extends RecyclerView.Adapter<ViewHolder> {
-
+public class JoinChallengeAdapter extends RecyclerView.Adapter<ViewHolder> {
     Context context;
     List<Challenge> challenges;
 
-    public ChallengeAdapter(Context context, List<Challenge> challenges) {
+    public JoinChallengeAdapter(Context context, List<Challenge> challenges) {
         this.context = context;
         this.challenges = challenges;
     }
@@ -25,7 +24,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.challenge_view, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.join_challenge_view, parent, false));
     }
 
     @Override
@@ -37,4 +36,5 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ViewHolder> {
     public int getItemCount() {
         return challenges.size();
     }
+
 }

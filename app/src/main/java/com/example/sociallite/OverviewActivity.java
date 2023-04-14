@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.model.Challenge;
-import com.example.service.ChallengeAdapter;
+import com.example.service.ChallengeOverviewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +29,16 @@ public class OverviewActivity extends AppCompatActivity {
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ChallengeAdapter(getApplicationContext(),challenges));
+        recyclerView.setAdapter(new ChallengeOverviewAdapter(getApplicationContext(),challenges));
 
         Button profileButton = findViewById(R.id.MyProfile);
         profileButton.setOnClickListener(view -> {
-            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));;
+            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));
         });
 
         Button joinButton = findViewById(R.id.Join);
         joinButton.setOnClickListener(view -> {
-            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));; //skal egt være joinActivity
+            startActivity(new Intent(OverviewActivity.this,JoinChallengeActivity.class));; //skal egt være joinActivity
         });
 
 
