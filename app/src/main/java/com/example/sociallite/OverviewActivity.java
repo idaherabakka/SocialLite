@@ -26,8 +26,8 @@ public class OverviewActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         List<Challenge> challenges = new ArrayList<>();
-        //challenges.add(new Challenge("Walk 30km", "Lisa"));
-        //challenges.add(new Challenge("Save 50k", "Thomas"));
+        challenges.add(new Challenge("Walk 30km", "Lisa", "", "", "Challenge", ""));
+        challenges.add(new Challenge("Save 50k", "Thomas", "", "", "Challenge", ""));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), challenges, new ChallengeOverviewAdapter.MyAdapterListener() {
