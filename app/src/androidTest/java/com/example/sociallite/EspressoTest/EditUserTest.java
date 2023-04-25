@@ -10,7 +10,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.hasFocus;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-import static com.example.sociallite.MyProfileActivity.isValidName;
+import static com.example.sociallite.EditProfileActivity.isValidName;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -19,6 +19,7 @@ import androidx.test.filters.LargeTest;
 
 import com.example.model.User;
 import com.example.service.FirebaseDBService;
+import com.example.sociallite.EditProfileActivity;
 import com.example.sociallite.ForgotPassword;
 import com.example.sociallite.MyProfileActivity;
 import com.example.sociallite.R;
@@ -37,7 +38,7 @@ import java.util.UUID;
 @LargeTest
 public class EditUserTest {
     @Rule
-    public ActivityScenarioRule<MyProfileActivity> MyProfileActivityRule = new ActivityScenarioRule<>(MyProfileActivity.class);
+    public ActivityScenarioRule<EditProfileActivity> EditProfileActivityRule = new ActivityScenarioRule<>(EditProfileActivity.class);
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseDBService db = new FirebaseDBService();
 
@@ -52,8 +53,8 @@ public class EditUserTest {
         Assert.assertEquals(currentUser.getEmail(),"d@d.no"); //Checks that we have logged in the right user
         String firstname = db.getUser(mAuth.getCurrentUser().getEmail()).getFirstname(); //Gets current firstname of user
         String random = generateRandomName(8); //Generates random name
-        onView(withId(R.id.firstName)).perform(replaceText(random)); //Replaces firstname with the random one
-        onView(withId(R.id.updateProfile)).perform(click()); //Clicks button to update
+        onView(withId(R.id.editFirstName)).perform(replaceText(random)); //Replaces firstname with the random one
+        onView(withId(R.id.confirm)).perform(click()); //Clicks button to update
         Assert.assertEquals(db.getUser(mAuth.getCurrentUser().getEmail()).firstname,random); //Checks that the new firstname is the random one
         Assert.assertNotEquals(firstname,db.getUser(mAuth.getCurrentUser().getEmail()).firstname);// Checks that the first firstname is not the new
     }
@@ -64,26 +65,26 @@ public class EditUserTest {
         Assert.assertEquals(currentUser.getEmail(),"d@d.no"); //Checks that we have logged in the right user
         String lastname = db.getUser(mAuth.getCurrentUser().getEmail()).getLastname(); //Gets current lastname of user
         String random = generateRandomName(8); //Generates random name
-        onView(withId(R.id.lastName)).perform(replaceText(random)); //Replaces lastname with the random one
-        onView(withId(R.id.updateProfile)).perform(click()); //Clicks button to update
+        onView(withId(R.id.editLastName)).perform(replaceText(random)); //Replaces lastname with the random one
+        onView(withId(R.id.confirm)).perform(click()); //Clicks button to update
         Assert.assertEquals(db.getUser(mAuth.getCurrentUser().getEmail()).lastname,random); //Checks that the new lastname is the random one
         Assert.assertNotEquals(lastname,db.getUser(mAuth.getCurrentUser().getEmail()).lastname);// Checks that the first lastname is not the first lastname
     }
     @Test
     public void errorWhenEmptyFirstName(){
-        onView(withId(R.id.firstName)).perform(replaceText(""));
+        onView(withId(R.id.editFirstName)).perform(replaceText(""));
         Espresso.closeSoftKeyboard();
         closeSoftKeyboard();
-        onView(withId(R.id.updateProfile)).perform(click());
-        onView(withId(R.id.firstName)).check(matches(hasFocus()));
+        onView(withId(R.id.confirm)).perform(click());
+        onView(withId(R.id.editFirstName)).check(matches(hasFocus()));
     }
     @Test
     public void errorWhenEmptyLastName(){
-        onView(withId(R.id.lastName)).perform(replaceText(""));
+        onView(withId(R.id.editLastName)).perform(replaceText(""));
         Espresso.closeSoftKeyboard();
         closeSoftKeyboard();
-        onView(withId(R.id.updateProfile)).perform(click());
-        onView(withId(R.id.lastName)).check(matches(hasFocus()));
+        onView(withId(R.id.confirm)).perform(click());
+        onView(withId(R.id.editLastName)).check(matches(hasFocus()));
     }
 
     public static String generateRandomName(int length) {

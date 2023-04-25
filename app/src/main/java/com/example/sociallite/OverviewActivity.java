@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.model.Challenge;
 import com.example.service.ChallengeOverviewAdapter;
 import com.example.service.ClickListener;
+import com.example.service.JoinChallengeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +34,10 @@ public class OverviewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), challenges, new ChallengeOverviewAdapter.MyAdapterListener() {
             @Override
-            public void buttonOnClick(View v, int position, TextView id) {
-                setContentView(R.layout.activity_teamprogression);
+            public void buttonOnClick(View v, int position, TextView challengeID) {
+                // TODO: Implement this to go to challenge
             }
-        }
-        );
+        });
         recyclerView.setAdapter(adapter);
 
         Button profileButton = findViewById(R.id.MyProfile);
