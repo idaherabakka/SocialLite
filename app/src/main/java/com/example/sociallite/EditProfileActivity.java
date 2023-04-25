@@ -41,15 +41,15 @@ public class EditProfileActivity extends AppCompatActivity {
         Button confirm = findViewById(R.id.confirm);
 
         confirm.setOnClickListener(view -> {
-            if (TextUtils.isEmpty(editFirstName.getText().toString())) {
+            if (!isValidName(editFirstName.getText().toString())) {
                 editFirstName.setError("First Name cannot be empty");
                 editFirstName.requestFocus();
             }
-            if (TextUtils.isEmpty(editLastName.getText().toString())){
+            if (!isValidName(editLastName.getText().toString())){
                 editLastName.setError("Last Name cannot be empty");
                 editLastName.requestFocus();
             }
-            else {
+            if(isValidName(editFirstName.getText().toString())&& isValidName(editLastName.getText().toString())) {
                 currentUser.setFirstname(editFirstName.getText().toString());
                 currentUser.setLastname(editLastName.getText().toString());
                 db.updateUser(currentUser);
@@ -62,7 +62,25 @@ public class EditProfileActivity extends AppCompatActivity {
             startActivity(new Intent(EditProfileActivity.this,MyProfileActivity.class));;
         });
 
-
-
     }
+
+    public static boolean isValidName(String name)
+    {
+        if (name == null || name.isEmpty()) {
+            return false; // empty string or null are not valid names
+        }
+
+        if (Character.isWhitespace(name.charAt(0))) {
+            return false; // name cannot begin with a space
+        }
+
+        for (char c : name.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return false; // name cannot contain digits
+            }
+        }
+
+        return true; // all checks passed, name is valid
+    }
+
 }
