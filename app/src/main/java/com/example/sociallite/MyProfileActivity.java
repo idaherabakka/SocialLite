@@ -6,36 +6,45 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.model.Challenge;
 import com.example.model.User;
+import com.example.service.FirebaseDBService;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MyProfileActivity extends AppCompatActivity {
+
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    FirebaseDBService db = new FirebaseDBService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myprofile);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String currentUser = mAuth.getCurrentUser().getEmail();
 
-        TextView title = findViewById(R.id.title);
-        title.setText("My Profile");
+        String email = mAuth.getCurrentUser().getEmail();
+        User currentUser = db.getUser(mAuth.getCurrentUser().getEmail());
+        String firstname = currentUser.getFirstname();
+        String lastname = currentUser.getLastname();
 
-        TextView email = findViewById(R.id.email);
-        email.setText(currentUser);
+
+        TextView nameText = findViewById(R.id.name);
+        nameText.setText(firstname + " " + lastname);
+
+        TextView emailText = findViewById(R.id.email);
+        emailText.setText(email);
+
 
         Button profileButton = findViewById(R.id.back);
         profileButton.setOnClickListener(view -> {
             startActivity(new Intent(MyProfileActivity.this,OverviewActivity.class));;
+        });
+
+        Button editProfileButton = findViewById(R.id.edit);
+        editProfileButton.setOnClickListener(view -> {
+            startActivity(new Intent(MyProfileActivity.this,EditProfileActivity.class));;
         });
 
     }

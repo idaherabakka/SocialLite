@@ -28,6 +28,7 @@
         </activity>
         <activity android:name=".OverviewActivity" />
         <activity android:name=".MyProfileActivity" />
+        <activity android:name=".EditProfileActivity" />
         <activity android:name=".JoinChallengeActivity"/>
         <activity android:name=".CreateChallengeActivity"/>
     </application>

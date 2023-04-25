@@ -2,20 +2,17 @@ package com.example.service;
 
 import static android.content.ContentValues.TAG;
 
-import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.model.Challenge;
 import com.example.model.Points;
 import com.example.model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -30,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 public class FirebaseDBService {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public FirebaseDBService() {
 
 
@@ -44,12 +41,12 @@ public class FirebaseDBService {
     // Add user OR overwrite user completely with a certain ID
     public void addUser(User u ) {
         Map<String, Object> user = new HashMap<>();
-        user.put("first", u.getFirstname());
-        user.put("last", u.getLastname());
+        user.put("firstname", u.getFirstname());
+        user.put("lastname", u.getLastname());
         //email as id
         user.put("email", u.getEmail());
-        user.put("challengesCreated", u.getCreatedChallenges());
-        user.put("challengesJoined", u.getJoinedChallenges());
+        user.put("challengesCreated", u.getChallengesCreated());
+        user.put("challengesJoined", u.getChallengesJoined());
 
         db.collection("User").document(u.getEmail()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -280,4 +277,12 @@ public class FirebaseDBService {
         return user;
     }
 
+    public void updateUser(User user) {
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put("firstname", user.getFirstname());
+        userMap.put("lastname", user.getLastname());
+        userMap.put("challengesJoined", user.getChallengesJoined());
+
+        db.collection("User").document(mAuth.getCurrentUser().getEmail()).update(userMap);
+    }
 }
