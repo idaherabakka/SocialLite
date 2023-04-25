@@ -49,7 +49,7 @@ public class JoinChallengeActivity extends AppCompatActivity {
                 User updatedUser = user.addChallenge(challenge);
                 dbService.updateUser(updatedUser);
             }
-        });
+        }, user);
         recyclerView.setAdapter(adapter);
 
         Button backButton = findViewById(R.id.back);

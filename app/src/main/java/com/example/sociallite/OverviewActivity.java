@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.model.Challenge;
 import com.example.service.ChallengeOverviewAdapter;
-import com.example.service.ClickListener;
-import com.example.service.JoinChallengeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
