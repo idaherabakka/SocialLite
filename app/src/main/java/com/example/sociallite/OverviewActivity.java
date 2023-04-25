@@ -35,7 +35,7 @@ public class OverviewActivity extends AppCompatActivity {
         ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), challenges, new ChallengeOverviewAdapter.MyAdapterListener() {
             @Override
             public void buttonOnClick(View v, int position, TextView challengeID) {
-                // TODO: Implement
+                // TODO: Implement this to go to challenge
             }
         });
         recyclerView.setAdapter(adapter);
