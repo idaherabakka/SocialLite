@@ -2,13 +2,15 @@ package com.example.model;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class User {
     public String firstname;
     public String lastname;
     private String email;
-
+    public ArrayList<User> allUsers = new ArrayList<>();
     private ArrayList<String> createdChallenges;
     private ArrayList<String> joinedChallenges;
 
@@ -19,11 +21,20 @@ public class User {
         this.email = email;
         this.createdChallenges = new ArrayList<>();
         this.joinedChallenges = new ArrayList<>();
+        allUsers.add(this);
     }
     public User(){}
-
+    public User getUser(String email){
+        for (User x : allUsers){
+            if(email.equals(x.getEmail())){
+                return x;
+            }
+        }
+        return null;
+    }
+    public HashMap<String,User> getAllUsers(){return getAllUsers();}
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     public void setFirstname(String firstname) {
@@ -31,7 +42,7 @@ public class User {
     }
 
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
 
     public void setLastname(String lastname) {
