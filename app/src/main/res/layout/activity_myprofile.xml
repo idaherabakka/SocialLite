@@ -52,6 +52,8 @@
 
     <EditText
         android:id="@+id/firstName"
+        android:maxLines="1"
+        android:inputType="text"
         android:layout_width="215dp"
         android:layout_height="38dp"
         android:layout_marginStart="180dp"
@@ -74,6 +76,8 @@
 
     <EditText
         android:id="@+id/lastName"
+        android:maxLines="1"
+        android:inputType="text"
         android:layout_width="214dp"
         android:layout_height="35dp"
         android:layout_marginStart="180dp"
