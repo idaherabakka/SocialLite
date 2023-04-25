@@ -2,7 +2,9 @@ package com.example.sociallite;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.model.Challenge;
 import com.example.service.ChallengeOverviewAdapter;
 import com.example.service.ClickListener;
+import com.example.service.JoinChallengeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +32,10 @@ public class OverviewActivity extends AppCompatActivity {
         challenges.add(new Challenge("Save 50k", "Thomas"));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), challenges, new ClickListener() {
+        ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), challenges, new ChallengeOverviewAdapter.MyAdapterListener() {
             @Override
-            public void onPositionClicked(int position) {
-                // TODO: when challenge in overview list is clicked, user should get sent to challenge info
+            public void buttonOnClick(View v, int position, TextView challengeID) {
+                // TODO: Implement
             }
         });
         recyclerView.setAdapter(adapter);

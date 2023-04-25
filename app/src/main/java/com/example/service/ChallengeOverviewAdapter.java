@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.model.Challenge;
 import com.example.sociallite.R;
 
+import org.w3c.dom.Text;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
 
@@ -20,12 +22,17 @@ public class ChallengeOverviewAdapter extends RecyclerView.Adapter<ChallengeOver
 
     Context context;
     List<Challenge> challenges;
-    private final ClickListener listener;
+    private final MyAdapterListener listener;
 
-    public ChallengeOverviewAdapter(Context context, List<Challenge> challenges, ClickListener listener) {
+    public ChallengeOverviewAdapter(Context context, List<Challenge> challenges, MyAdapterListener listener) {
         this.context = context;
         this.challenges = challenges;
         this.listener = listener;
+    }
+
+    public static JoinChallengeAdapter.MyAdapterListener onClickListener;
+    public interface MyAdapterListener {
+        void buttonOnClick(View v, int position, TextView id);
     }
 
     @NonNull
@@ -44,28 +51,26 @@ public class ChallengeOverviewAdapter extends RecyclerView.Adapter<ChallengeOver
         return challenges.size();
     }
 
-    public static class OverviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class OverviewViewHolder extends RecyclerView.ViewHolder{
         TextView titleView;
+        TextView challengeID;
         Button button;
-        WeakReference<ClickListener> listenerRef;
+        MyAdapterListener listener;
 
-        public OverviewViewHolder(@NonNull View itemView, ClickListener listener) {
+
+        public OverviewViewHolder(@NonNull View itemView, MyAdapterListener listener) {
             super(itemView);
-            titleView = itemView.findViewById(R.id.button);
-            listenerRef = new WeakReference<>(listener);
-            button = (Button) itemView.findViewById(R.id.button);
-        }
+            this.titleView = itemView.findViewById(R.id.button);
+            this.listener = listener;
+            this.button = (Button) itemView.findViewById(R.id.button);
+            this.challengeID = itemView.findViewById(R.id.ID);
 
-        // onClick Listener for view
-        @Override
-        public void onClick(View v) {
-            if (v.getId() == button.getId()) {
-                //
-            } else {
-                //
-            }
-
-            listenerRef.get().onPositionClicked(getAdapterPosition());
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.buttonOnClick(v, getAdapterPosition(), challengeID);
+                }
+            });
         }
     }
 }
