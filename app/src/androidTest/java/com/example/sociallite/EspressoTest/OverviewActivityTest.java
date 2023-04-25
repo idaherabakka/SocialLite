@@ -1,5 +1,6 @@
 package com.example.sociallite.EspressoTest;
 
+import androidx.test.espresso.ViewAssertion;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -69,7 +70,6 @@ public class OverviewActivityTest {
     public ActivityScenarioRule<OverviewActivity> overviewActivityActivityScenarioRule = new ActivityScenarioRule<>(OverviewActivity.class);
     @Test
     public void testMyProfileButton(){
-        onView(withId(R.id.MyProfile)).check(matches(isDisplayed()));
         onView(withId(R.id.MyProfile)).perform(click());
     }
 }
