@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 
 public class FirebaseDBService {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public FirebaseDBService() {
 
 
@@ -44,8 +45,8 @@ public class FirebaseDBService {
     // Add user OR overwrite user completely with a certain ID
     public void addUser(User u ) {
         Map<String, Object> user = new HashMap<>();
-        user.put("first", u.getFirstname());
-        user.put("last", u.getLastname());
+        user.put("firstname", u.getFirstname());
+        user.put("lastname", u.getLastname());
         //email as id
         user.put("email", u.getEmail());
         user.put("challengesCreated", u.getCreatedChallenges());
@@ -278,4 +279,11 @@ public class FirebaseDBService {
         return user;
     }
 
+    public void updateUser(User user) {
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put("firstname", user.getFirstname());
+        userMap.put("lastname", user.getLastname());
+
+        db.collection("User").document(mAuth.getCurrentUser().getEmail()).update(userMap);
+    }
 }
