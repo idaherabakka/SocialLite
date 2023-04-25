@@ -76,7 +76,7 @@ public class CreateChallengeActivity extends AppCompatActivity implements Adapte
 
         String dateDue = dueDate.getText().toString() ;  // where dueDate is TextView
 
-        Challenge challenge = new Challenge(title.getText().toString(), creator, dateDue, dateCurrent, type, description.getText().toString());
+        Challenge challenge = new Challenge(title.getText().toString(), creator, dateDue, dateCurrent, type, "test"); //description.getText().toString()
         db.addChallenge(challenge);
         startActivity(new Intent(CreateChallengeActivity.this, OverviewActivity.class));
     };
