@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.model.Challenge;
+import com.example.model.User;
 import com.example.sociallite.R;
 
 import java.util.List;
@@ -19,12 +20,14 @@ public class JoinChallengeAdapter extends RecyclerView.Adapter<JoinChallengeAdap
     Context context;
     List<Challenge> challenges;
     private final MyAdapterListener listener;
+    User user;
 
 
-    public JoinChallengeAdapter(Context context, List<Challenge> challenges, MyAdapterListener listener) {
+    public JoinChallengeAdapter(Context context, List<Challenge> challenges, MyAdapterListener listener, User user) {
         this.context = context;
         this.challenges = challenges;
         this.listener = listener;
+        this.user = user;
     }
 
     public void filterList(List<Challenge> filterlist) {
@@ -35,13 +38,19 @@ public class JoinChallengeAdapter extends RecyclerView.Adapter<JoinChallengeAdap
     @NonNull
     @Override
     public JoinViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new JoinViewHolder(LayoutInflater.from(context).inflate(R.layout.join_challenge_view, parent, false),listener);
+        return new JoinViewHolder(LayoutInflater.from(context).inflate(R.layout.join_challenge_view, parent, false),listener, user);
     }
 
     @Override
     public void onBindViewHolder(@NonNull JoinViewHolder holder, int position) {
         holder.challengeID.setText(challenges.get(position).getID());
         holder.titleView.setText(challenges.get(position).getTitle());
+
+        String id = (String) holder.challengeID.getText();
+        if (user.getChallengesJoined().contains(id)) {
+            holder.button.setText("Joined");
+            holder.button.setEnabled(false);
+        }
     }
 
     @Override
@@ -57,19 +66,27 @@ public class JoinChallengeAdapter extends RecyclerView.Adapter<JoinChallengeAdap
         TextView titleView;
         Button button;
         MyAdapterListener listener;
+        User user;
 
-        public JoinViewHolder(@NonNull View itemView, MyAdapterListener listener) {
+        public JoinViewHolder(@NonNull View itemView, MyAdapterListener listener, User user) {
             super(itemView);
             this.titleView = itemView.findViewById(R.id.title);
             this.challengeID = itemView.findViewById(R.id.ID);
             this.listener = listener;
             this.button = (Button) itemView.findViewById(R.id.button);
-            //button.setOnClickListener(this);
+
+            String id = (String) challengeID.getText();
+            if (user.getChallengesJoined().contains(id)) {
+                button.setText("Joined");
+                button.setEnabled(false);
+            }
+
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.buttonOnClick(v, getAdapterPosition(), challengeID);
                     button.setText("Joined");
+                    button.setEnabled(false);
                 }
             });
         }
