@@ -38,7 +38,7 @@ public class OverviewActivity extends AppCompatActivity {
 
         Button joinButton = findViewById(R.id.Join);
         joinButton.setOnClickListener(view -> {
-            startActivity(new Intent(OverviewActivity.this, JoinChallengeActivity.class)); //skal egt være joinActivity
+            startActivity(new Intent(OverviewActivity.this, JoinChallengeActivity.class));
         });
 
         Button createButton = findViewById(R.id.Create);

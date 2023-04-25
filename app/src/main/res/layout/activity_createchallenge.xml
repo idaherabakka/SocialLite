@@ -99,7 +99,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/Cancel"
         android:layout_width="137dp"
         android:layout_height="54dp"
         android:layout_marginStart="36dp"

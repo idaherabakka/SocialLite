@@ -15,15 +15,6 @@ public class Challenge {
     private String date_created;
 
     private String type;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     private String description;
 
     private List<String> participants;
@@ -45,6 +36,14 @@ public class Challenge {
 
     public void setID(String id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getType() { return type; }

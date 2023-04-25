@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,6 @@ import com.example.service.FirebaseDBService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,28 +25,30 @@ public class CreateChallengeActivity extends AppCompatActivity implements Adapte
     FirebaseDBService db;
     FirebaseAuth mAuth;
     EditText title;
-    FirebaseUser creator;
+    String creator;
     String type;
     Button createButton;
+    Button cancelButton;
     Date currentDate;
-    TextView dueDate;
-    TextView description;
+    EditText dueDate;
+    EditText description;
     String[] challengeTypes = {"Health", "Economics", "Nutrition"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createchallenge);
+
         db = new FirebaseDBService();
         mAuth = FirebaseAuth.getInstance();
         title = findViewById(R.id.title);
-        creator = mAuth.getCurrentUser();
+        //description.findViewById(R.id.Description); THIS GIVES ERROR
+        creator = mAuth.getCurrentUser().getEmail();
         dueDate = findViewById(R.id.DueDate);
-        //type = findViewById(R.id.challengeType);
-        description.findViewById(R.id.Description);
         createButton = findViewById(R.id.Create);
+        cancelButton = findViewById(R.id.Cancel);
 
-        Spinner spinner = (Spinner) findViewById(R.id.challengeType);
+        Spinner spinner = findViewById(R.id.challengeType);
         spinner.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the country list
@@ -63,16 +63,20 @@ public class CreateChallengeActivity extends AppCompatActivity implements Adapte
             addChallenge();
         });
 
+        cancelButton.setOnClickListener(view -> {
+            startActivity(new Intent(CreateChallengeActivity.this, OverviewActivity.class));
+        });
+
     }
 
     private void addChallenge() {
         currentDate = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("dd.MM.yyyy");
         String dateCurrent = simpleDateFormat.format(currentDate);
 
         String dateDue = dueDate.getText().toString() ;  // where dueDate is TextView
 
-        Challenge challenge = new Challenge(title.getText().toString(), creator.toString(), dateDue, dateCurrent, type, description.toString());
+        Challenge challenge = new Challenge(title.getText().toString(), creator, dateDue, dateCurrent, type, description.getText().toString());
         db.addChallenge(challenge);
         startActivity(new Intent(CreateChallengeActivity.this, OverviewActivity.class));
     };
