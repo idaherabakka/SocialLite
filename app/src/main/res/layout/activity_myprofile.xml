@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     >
+    android:background="@color/white"
+    >
+    android:background="@drawable/overview_bg">
+
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="170dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="24dp"
+        android:text="My Profile"
+        android:textSize="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back" />
 
     <TextView
         android:id="@+id/email"
@@ -16,6 +31,21 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/ProfilePicture"
         app:layout_constraintTop_toBottomOf="@+id/name" />
+        android:layout_width="188dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="9dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/ProfilePicture"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+        android:layout_width="261dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/white"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back" />
 
     <Button
         android:id="@+id/back"
@@ -26,6 +56,42 @@
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="188dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/ProfilePicture"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/edit"
+    <TextView
+        android:id="@+id/firstNameField"
+        android:layout_width="174dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="252dp"
+        android:text="First Name:"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="215dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="256dp"
+        android:textColor="@color/white"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/name"
@@ -61,4 +127,29 @@
         app:strokeColor="#FFA883"
         app:strokeWidth="5dp" />
 
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="40dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ProfilePicture"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:padding="5dp"
+        android:src="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        app:strokeColor="#FFA883"
+        app:strokeWidth="5dp" />
+
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="232dp"
+        android:text="Update Profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
