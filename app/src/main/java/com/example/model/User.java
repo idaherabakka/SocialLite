@@ -7,27 +7,20 @@ import java.util.UUID;
 public class User {
     public String firstname;
     public String lastname;
-
-    public UUID getID() {
-        return ID;
-    }
-
-
-    public UUID ID;
-    private String password;
     private String email;
 
     private ArrayList<String> createdChallenges;
     private ArrayList<String> joinedChallenges;
 
 
-    public User(String firstname, String lastname, String password, String email) {
+    public User(String firstname, String lastname, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.ID = UUID.randomUUID();
-        this.password = password;
         this.email = email;
+        this.createdChallenges = new ArrayList<>();
+        this.joinedChallenges = new ArrayList<>();
     }
+    public User(){}
 
     public String getFirstname() {
         return firstname;
@@ -45,13 +38,6 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getEmail() {
         return email;

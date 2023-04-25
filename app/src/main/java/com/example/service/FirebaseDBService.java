@@ -1,4 +1,4 @@
-package com.example.sociallite;
+package com.example.service;
 
 import static android.content.ContentValues.TAG;
 
@@ -15,35 +15,43 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-public class FirebaseDBService extends AppCompatActivity {
+public class FirebaseDBService {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public void FirebaseDBService() {
+    public FirebaseDBService() {
+
 
     }
     public FirebaseFirestore getDataBase(){
         return db;
     }
 
+    //get : return User object
+
     // Add user OR overwrite user completely with a certain ID
     public void addUser(User u ) {
         Map<String, Object> user = new HashMap<>();
-        user.put("id", u.getID());
         user.put("first", u.getFirstname());
         user.put("last", u.getLastname());
+        //email as id
         user.put("email", u.getEmail());
         user.put("challengesCreated", u.getCreatedChallenges());
         user.put("challengesJoined", u.getJoinedChallenges());
 
-        db.collection("User").document(u.getID().toString()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("User").document(u.getEmail()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
@@ -162,23 +170,112 @@ public class FirebaseDBService extends AppCompatActivity {
 
     }
 
-    // Read data, based on collection name and chosen ID
-    public void read(String collectionName, String chosenID){
-        DocumentReference docRef = db.collection(collectionName).document(chosenID);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
+    ArrayList<Challenge> challenges = new ArrayList<>();
+    //Read all documents by collectionName
+    public ArrayList<Challenge> getAllChallenges() {
+        Task<QuerySnapshot> colRef = db.collection("Challenge").get();
+        while (!colRef.isComplete()) {
+            try {
+                TimeUnit.SECONDS.sleep(1); //forbedringspotensiale:))
             }
-        });
+            catch(InterruptedException e){
+                break;
+            }
+        }
+        for (QueryDocumentSnapshot document : colRef.getResult()) {
+            Challenge currentChallenge = document.toObject(Challenge.class);
+            challenges.add(currentChallenge);
+        }
+        return challenges;
     }
+    Challenge challenge = new Challenge();
+    // Read data, based on collection name and chosen ID
+    public Challenge getChallenge(String chosenID){
+        DocumentReference docRef = db.collection("Challenge").document(chosenID);
+        Task<DocumentSnapshot> task = docRef.get();
+        while (!task.isComplete()) {
+            try {
+                TimeUnit.SECONDS.sleep(1); //forbedringspotensiale:))
+            }
+            catch(InterruptedException e){
+                break;
+            }
+        }
+        DocumentSnapshot snapshot = task.getResult();
+        challenge = snapshot.toObject(Challenge.class);
+        return challenge;
+    }
+
+    ArrayList<Points> points = new ArrayList<>();
+    //Read all documents by collectionName
+    public ArrayList<Challenge> getAllPoints() {
+        Task<QuerySnapshot> colRef = db.collection("Points").get();
+        while (!colRef.isComplete()) {
+            try {
+                TimeUnit.SECONDS.sleep(1); //forbedringspotensiale:))
+            }
+            catch(InterruptedException e){
+                break;
+            }
+        }
+        for (QueryDocumentSnapshot document : colRef.getResult()) {
+            Points currentPoints = document.toObject(Points.class);
+            points.add(currentPoints);
+        }
+        return challenges;
+    }
+    Points point = new Points();
+    // Read data, based on collection name and chosen ID
+    public Points getPoints(String chosenID){
+        DocumentReference docRef = db.collection("Points").document(chosenID);
+        Task<DocumentSnapshot> task = docRef.get();
+        while (!task.isComplete()) {
+            try {
+                TimeUnit.SECONDS.sleep(1); //forbedringspotensiale:))
+            }
+            catch(InterruptedException e){
+                break;
+            }
+        }
+        DocumentSnapshot snapshot = task.getResult();
+        point = snapshot.toObject(Points.class);
+        return point;
+    }
+
+    ArrayList<User> users = new ArrayList<>();
+    //Read all documents by collectionName
+    public ArrayList<User> getAllUsers() {
+        Task<QuerySnapshot> colRef = db.collection("User").get();
+        while (!colRef.isComplete()) {
+            try {
+                TimeUnit.SECONDS.sleep(1); //forbedringspotensiale:))
+            }
+            catch(InterruptedException e){
+                break;
+            }
+        }
+        for (QueryDocumentSnapshot document : colRef.getResult()) {
+            User currentUser = document.toObject(User.class);
+            users.add(currentUser);
+        }
+        return users;
+    }
+    User user = new User();
+    // Read data, based on collection name and chosen ID
+    public User getUser(String chosenID){
+        DocumentReference docRef = db.collection("User").document(chosenID);
+        Task<DocumentSnapshot> task = docRef.get();
+        while (!task.isComplete()) {
+            try {
+                TimeUnit.SECONDS.sleep(1); //forbedringspotensiale:))
+            }
+            catch(InterruptedException e){
+                break;
+            }
+        }
+        DocumentSnapshot snapshot = task.getResult();
+        user = snapshot.toObject(User.class);
+        return user;
+    }
+
 }
