@@ -1,0 +1,25 @@
+name: Espresso tests
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # Install dependencies and build your app
+    - name: Build app
+      run: ./gradlew assembleDebug
+
+    # Run Espresso tests
+    - name: Run Espresso tests
+      run: ./gradlew connectedDebugAndroidTest
+
+    # Fail the build if any tests fail
+    - name: Fail build if tests fail
+      run: |
+        if [ $(grep -c "FAILURES!!!" app/build/reports/androidTests/connected/flavors/DebugAndroidTest/index.html) -ne 0 ]; then exit 1; fi

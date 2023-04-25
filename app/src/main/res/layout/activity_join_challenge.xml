@@ -5,6 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/back"
+        android:layout_width="100dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="36dp"
+        android:text="Back"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="383dp"
@@ -35,15 +46,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="347dp"
-        android:layout_height="674dp"
+        android:layout_width="340dp"
+        android:layout_height="586dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="64dp"
         android:fadeScrollbars="false"
         android:maxHeight="300dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     <TextView
         android:id="@+id/textView2"
