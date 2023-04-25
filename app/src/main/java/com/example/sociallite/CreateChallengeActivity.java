@@ -42,7 +42,7 @@ public class CreateChallengeActivity extends AppCompatActivity implements Adapte
         db = new FirebaseDBService();
         mAuth = FirebaseAuth.getInstance();
         title = findViewById(R.id.title);
-        //description.findViewById(R.id.Description); THIS GIVES ERROR
+        description = findViewById(R.id.Description);
         creator = mAuth.getCurrentUser().getEmail();
         dueDate = findViewById(R.id.DueDate);
         createButton = findViewById(R.id.Create);
@@ -76,7 +76,7 @@ public class CreateChallengeActivity extends AppCompatActivity implements Adapte
 
         String dateDue = dueDate.getText().toString() ;  // where dueDate is TextView
 
-        Challenge challenge = new Challenge(title.getText().toString(), creator, dateDue, dateCurrent, type, "test"); //description.getText().toString()
+        Challenge challenge = new Challenge(title.getText().toString(), creator, dateDue, dateCurrent, type, description.getText().toString());
         db.addChallenge(challenge);
         startActivity(new Intent(CreateChallengeActivity.this, OverviewActivity.class));
     };
