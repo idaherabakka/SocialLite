@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.model.Challenge;
-import com.example.service.ChallengeAdapter;
+import com.example.service.ChallengeOverviewAdapter;
+import com.example.service.ClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,18 +28,23 @@ public class OverviewActivity extends AppCompatActivity {
         challenges.add(new Challenge("Walk 30km", "Lisa"));
         challenges.add(new Challenge("Save 50k", "Thomas"));
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ChallengeAdapter(getApplicationContext(),challenges));
+        ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), challenges, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+                // TODO: when challenge in overview list is clicked, user should get sent to challenge info
+            }
+        });
+        recyclerView.setAdapter(adapter);
 
         Button profileButton = findViewById(R.id.MyProfile);
         profileButton.setOnClickListener(view -> {
-            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));;
+            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));
         });
 
         Button joinButton = findViewById(R.id.Join);
         joinButton.setOnClickListener(view -> {
-            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));; //skal egt være joinActivity
+            startActivity(new Intent(OverviewActivity.this,JoinChallengeActivity.class));
         });
 
 
