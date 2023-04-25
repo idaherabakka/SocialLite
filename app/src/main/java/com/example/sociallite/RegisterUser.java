@@ -45,12 +45,12 @@ public class RegisterUser extends AppCompatActivity {
         String email = this.email.getText().toString();
         String password = this.password.getText().toString();
         String firstName = this.firstName.getText().toString();
-        String lasName = this.lastName.getText().toString();
+        String lastName = this.lastName.getText().toString();
         if (TextUtils.isEmpty(firstName)) {
             this.firstName.setError("First Name cannot be empty");
             this.firstName.requestFocus();
         }
-        if (TextUtils.isEmpty(lasName)){
+        if (TextUtils.isEmpty(lastName)){
                 this.lastName.setError("Last Name cannot be empty");
                 this.lastName.requestFocus();
             }
@@ -67,7 +67,7 @@ public class RegisterUser extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(RegisterUser.this, "User Registered", Toast.LENGTH_SHORT).show();
-                        User user = new User(firstName,lasName,email);
+                        User user = new User(firstName,lastName,email);
                         db.addUser(user);
                         startActivity(new Intent(RegisterUser.this, MainActivity.class));
                     }else{

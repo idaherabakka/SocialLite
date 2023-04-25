@@ -1,29 +1,37 @@
 package com.example.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.HashMap;
 
 public class User {
     public String firstname;
     public String lastname;
     private String email;
-
-    private ArrayList<String> createdChallenges;
-    private ArrayList<String> joinedChallenges;
+    public ArrayList<User> allUsers = new ArrayList<>();
+    private ArrayList<String> challengesCreated;
+    private ArrayList<String> challengesJoined;
 
 
     public User(String firstname, String lastname, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.createdChallenges = new ArrayList<>();
-        this.joinedChallenges = new ArrayList<>();
+        this.challengesCreated = new ArrayList<>();
+        this.challengesJoined = new ArrayList<>();
+        allUsers.add(this);
     }
     public User(){}
-
+    public User getUser(String email){
+        for (User x : allUsers){
+            if(email.equals(x.getEmail())){
+                return x;
+            }
+        }
+        return null;
+    }
+    public HashMap<String,User> getAllUsers(){return getAllUsers();}
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     public void setFirstname(String firstname) {
@@ -31,7 +39,7 @@ public class User {
     }
 
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
 
     public void setLastname(String lastname) {
@@ -47,36 +55,41 @@ public class User {
         this.email = email;
     }
 
-    public ArrayList<String> getCreatedChallenges() {
-        return createdChallenges;
+    public ArrayList<String> getChallengesCreated() {
+        return challengesCreated;
     }
 
-    public void setCreatedChallenges(ArrayList<String> createdChallenges) {
-        this.createdChallenges = createdChallenges;
+    public void setChallengesCreated(ArrayList<String> challengesCreated) {
+        this.challengesCreated = challengesCreated;
     }
 
-    public ArrayList<String> getJoinedChallenges() {
-        return joinedChallenges;
+    public ArrayList<String> getChallengesJoined() {
+        return challengesJoined;
     }
 
-    public void setJoinedChallenges(ArrayList<String> joinedChallenges) {
-        this.joinedChallenges = joinedChallenges;
+    public void setChallengesJoined(ArrayList<String> challengesJoined) {
+        this.challengesJoined = challengesJoined;
+    }
+
+    public User addChallenge(Challenge challenge) {
+        this.challengesJoined.add(challenge.getID());
+        return this;
     }
 
     public void addJoined(String challengeId){
-        joinedChallenges.add(challengeId);
+        challengesJoined.add(challengeId);
     }
 
     public void removeJoined(String challengeId) {
-        joinedChallenges.remove(challengeId);
+        challengesJoined.remove(challengeId);
     }
 
     public void addCreated(String challengeId){
-        joinedChallenges.add(challengeId);
+        challengesJoined.add(challengeId);
     }
 
     public void removeCreated(String challengeId) {
-        joinedChallenges.remove(challengeId);
+        challengesJoined.remove(challengeId);
     }
 
 
