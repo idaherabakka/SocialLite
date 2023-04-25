@@ -62,7 +62,7 @@ public class MyProfileActivity extends AppCompatActivity {
         });
         Button profileButton = findViewById(R.id.back);
         profileButton.setOnClickListener(view -> {
-            startActivity(new Intent(MyProfileActivity.this,OverviewActivity.class));;
+            startActivity(new Intent(MyProfileActivity.this,OverviewActivity.class));
         });
 
     }

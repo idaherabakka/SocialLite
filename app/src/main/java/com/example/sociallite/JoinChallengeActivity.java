@@ -13,13 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.model.Challenge;
 import com.example.model.User;
-import com.example.service.ChallengeOverviewAdapter;
-import com.example.service.ClickListener;
 import com.example.service.FirebaseDBService;
 import com.example.service.JoinChallengeAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,21 +58,38 @@ public class JoinChallengeActivity extends AppCompatActivity {
         });
 
         SearchView searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filter(s);
+                return true;
+            }
+        });
 
     }
+
 
     private void filter(String text) {
         List<Challenge> filteredlist = new ArrayList<Challenge>();
 
-        for (Challenge challenge : challenges) {
-            if (challenge.getID().contains(text)) {
-                filteredlist.add(challenge);
+        if (text != null) {
+            for (Challenge challenge : challenges) {
+                if (challenge.getID().contains(text)) {
+                    filteredlist.add(challenge);
+                }
+            }
+            if (filteredlist.isEmpty()) {
+                System.out.println("No such challenges.");
+            } else {
+                adapter.filterList(filteredlist);
             }
         }
-        if (filteredlist.isEmpty()) {
-            System.out.println("No such challenges.");
-        } else {
-            adapter.filterList(filteredlist);
-        }
+
+
+
     }
 }
