@@ -26,8 +26,8 @@ public class OverviewActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         List<Challenge> challenges = new ArrayList<>();
-        challenges.add(new Challenge("Walk 30km", "Lisa"));
-        challenges.add(new Challenge("Save 50k", "Thomas"));
+        challenges.add(new Challenge("Walk 30km", "Lisa", "", "", "Challenge", ""));
+        challenges.add(new Challenge("Save 50k", "Thomas", "", "", "Challenge", ""));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), challenges, new ChallengeOverviewAdapter.MyAdapterListener() {
@@ -46,6 +46,11 @@ public class OverviewActivity extends AppCompatActivity {
         Button joinButton = findViewById(R.id.Join);
         joinButton.setOnClickListener(view -> {
             startActivity(new Intent(OverviewActivity.this,JoinChallengeActivity.class));
+        });
+
+        Button createButton = findViewById(R.id.Create);
+        createButton.setOnClickListener(view -> {
+            startActivity(new Intent(OverviewActivity.this, CreateChallengeActivity.class));
         });
 
 

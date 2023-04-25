@@ -67,6 +67,8 @@ public class FirebaseDBService {
         Map<String, Object> challenges = new HashMap<>();
         challenges.put("id", challenge.getID());
         challenges.put("title", challenge.getTitle());
+        challenges.put("description", challenge.getDescription());
+        challenges.put("type", challenge.getType());
         challenges.put("creator", challenge.getCreator());
         challenges.put("deadline", challenge.getDeadline());
         challenges.put("date_created", challenge.getDate_created());
