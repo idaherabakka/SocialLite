@@ -13,19 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.model.Challenge;
 import com.example.sociallite.R;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 
 public class JoinChallengeAdapter extends RecyclerView.Adapter<JoinChallengeAdapter.JoinViewHolder> {
     Context context;
     List<Challenge> challenges;
-    private final ClickListener listener;
+    private final MyAdapterListener listener;
 
 
-    public JoinChallengeAdapter(Context context, List<Challenge> challenges, ClickListener listener) {
+    public JoinChallengeAdapter(Context context, List<Challenge> challenges, MyAdapterListener listener) {
         this.context = context;
         this.challenges = challenges;
         this.listener = listener;
+    }
+
+    public void filterList(List<Challenge> filterlist) {
+        challenges = filterlist;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -36,6 +40,7 @@ public class JoinChallengeAdapter extends RecyclerView.Adapter<JoinChallengeAdap
 
     @Override
     public void onBindViewHolder(@NonNull JoinViewHolder holder, int position) {
+        holder.challengeID.setText(challenges.get(position).getID());
         holder.titleView.setText(challenges.get(position).getTitle());
     }
 
@@ -44,28 +49,32 @@ public class JoinChallengeAdapter extends RecyclerView.Adapter<JoinChallengeAdap
         return challenges.size();
     }
 
-    public static class JoinViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
+    public static MyAdapterListener onClickListener;
+
+    public interface MyAdapterListener {
+        void buttonOnClick(View v, int position, TextView id);
+    }
+
+    public static class JoinViewHolder extends RecyclerView.ViewHolder {
+        TextView challengeID;
         TextView titleView;
         Button button;
-        WeakReference<ClickListener> listenerRef;
+        MyAdapterListener listener;
 
-        public JoinViewHolder(@NonNull View itemView, ClickListener listener) {
+        public JoinViewHolder(@NonNull View itemView, MyAdapterListener listener) {
             super(itemView);
-            titleView = itemView.findViewById(R.id.title);
-            listenerRef = new WeakReference<>(listener);
-            button = (Button) itemView.findViewById(R.id.button);
-        }
-
-        // onClick Listener for view
-        @Override
-        public void onClick(View v) {
-            if (v.getId() == button.getId()) {
-                //
-            } else {
-                //
-            }
-
-            listenerRef.get().onPositionClicked(getAdapterPosition());
+            this.titleView = itemView.findViewById(R.id.title);
+            this.challengeID = itemView.findViewById(R.id.ID);
+            this.listener = listener;
+            this.button = (Button) itemView.findViewById(R.id.button);
+            //button.setOnClickListener(this);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.buttonOnClick(v, getAdapterPosition(), challengeID);
+                    button.setText("Joined");
+                }
+            });
         }
     }
 }
