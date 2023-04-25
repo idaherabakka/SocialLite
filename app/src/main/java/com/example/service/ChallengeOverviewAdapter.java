@@ -20,7 +20,7 @@ public class ChallengeOverviewAdapter extends RecyclerView.Adapter<ChallengeOver
 
     Context context;
     List<Challenge> challenges;
-    private final ClickListener listener;
+    private final MyAdapterListener listener;
 
     public ChallengeOverviewAdapter(Context context, List<Challenge> challenges, MyAdapterListener listener) {
         this.context = context;
@@ -52,9 +52,9 @@ public class ChallengeOverviewAdapter extends RecyclerView.Adapter<ChallengeOver
     public static class OverviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView titleView;
         Button button;
-        WeakReference<ClickListener> listenerRef;
+        WeakReference<MyAdapterListener> listenerRef;
 
-        public OverviewViewHolder(@NonNull View itemView, ClickListener listener) {
+        public OverviewViewHolder(@NonNull View itemView, MyAdapterListener listener) {
             super(itemView);
             titleView = itemView.findViewById(R.id.button);
             listenerRef = new WeakReference<>(listener);
@@ -69,8 +69,7 @@ public class ChallengeOverviewAdapter extends RecyclerView.Adapter<ChallengeOver
             } else {
                 //
             }
-
-            listenerRef.get().onPositionClicked(getAdapterPosition());
+            //listenerRef.get().buttonOnClick(v, getAdapterPosition(), challengeID);
         }
     }
 }
