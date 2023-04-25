@@ -48,9 +48,6 @@ public class JoinChallengeAdapter extends RecyclerView.Adapter<JoinChallengeAdap
     public int getItemCount() {
         return challenges.size();
     }
-
-    public static MyAdapterListener onClickListener;
-
     public interface MyAdapterListener {
         void buttonOnClick(View v, int position, TextView id);
     }
