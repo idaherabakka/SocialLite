@@ -131,7 +131,7 @@
         android:layout_marginTop="508dp"
         android:layout_marginEnd="196dp"
         android:background="#FFA883"
-        android:text="[Select a Planet...]"
+        android:text="[Select challenge type...]"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

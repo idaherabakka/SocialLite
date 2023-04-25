@@ -24,8 +24,8 @@ public class OverviewActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         List<Challenge> challenges = new ArrayList<>();
-        challenges.add(new Challenge("Walk 30km", "Lisa"));
-        challenges.add(new Challenge("Save 50k", "Thomas"));
+        //challenges.add(new Challenge("Walk 30km", "Lisa"));
+        //challenges.add(new Challenge("Save 50k", "Thomas"));
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -33,14 +33,18 @@ public class OverviewActivity extends AppCompatActivity {
 
         Button profileButton = findViewById(R.id.MyProfile);
         profileButton.setOnClickListener(view -> {
-            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));;
+            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));
         });
 
         Button joinButton = findViewById(R.id.Join);
         joinButton.setOnClickListener(view -> {
-            startActivity(new Intent(OverviewActivity.this,MyProfileActivity.class));; //skal egt være joinActivity
+            startActivity(new Intent(OverviewActivity.this, JoinChallengeActivity.class)); //skal egt være joinActivity
         });
 
+        Button createButton = findViewById(R.id.Create);
+        createButton.setOnClickListener(view -> {
+            startActivity(new Intent(OverviewActivity.this, CreateChallengeActivity.class));
+        });
 
     }
 
