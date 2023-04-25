@@ -22,7 +22,7 @@ public class ChallengeOverviewAdapter extends RecyclerView.Adapter<ChallengeOver
     List<Challenge> challenges;
     private final ClickListener listener;
 
-    public ChallengeOverviewAdapter(Context context, List<Challenge> challenges, ClickListener listener) {
+    public ChallengeOverviewAdapter(Context context, List<Challenge> challenges, MyAdapterListener listener) {
         this.context = context;
         this.challenges = challenges;
         this.listener = listener;
@@ -44,6 +44,11 @@ public class ChallengeOverviewAdapter extends RecyclerView.Adapter<ChallengeOver
         return challenges.size();
     }
 
+    public static JoinChallengeAdapter.MyAdapterListener onClickListener;
+
+    public interface MyAdapterListener {
+        void buttonOnClick(View v, int position, TextView id);
+    }
     public static class OverviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView titleView;
         Button button;
