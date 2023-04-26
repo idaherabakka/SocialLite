@@ -10,6 +10,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    # Set up and start the Android emulator
+    - name: Set up emulator
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 30
+        target: default
+        tag: google_apis
+        arch: x86
+        profile: Nexus 5X
 
     # Install dependencies and build your app
     - name: Build app
