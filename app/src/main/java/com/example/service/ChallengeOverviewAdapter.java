@@ -1,6 +1,7 @@
 package com.example.service;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,10 @@ public class ChallengeOverviewAdapter extends RecyclerView.Adapter<ChallengeOver
 
     @Override
     public void onBindViewHolder(@NonNull OverviewViewHolder holder, int position) {
+        holder.challengeID.setText(challenges.get(position).getID());
         holder.titleView.setText(challenges.get(position).getTitle());
     }
+
 
     @Override
     public int getItemCount() {

@@ -4,6 +4,8 @@ plugins {
     id 'com.google.firebase.appdistribution'
 }
 
+
+
 android {
     namespace 'com.example.sociallite'
     compileSdk 33
@@ -42,7 +44,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
