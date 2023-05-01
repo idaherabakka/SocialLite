@@ -1,7 +1,9 @@
 package com.example.sociallite;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,11 +32,17 @@ public class ProgressionActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teamprogression);
         barChart = findViewById(R.id.barChart_view);
+        showBarChart(barChart);
+
+        Button backButton = findViewById(R.id.back);
+        backButton.setOnClickListener(view -> {
+            startActivity(new Intent(ProgressionActivity.this,OverviewActivity.class));
+        });
 
 
 
     }
-    private void showBarChart(){
+    private void showBarChart(BarChart barChart){
         ArrayList<Double> valueList = new ArrayList<Double>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         String title = "Title";
