@@ -44,6 +44,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
     public static class JoinViewHolder extends RecyclerView.ViewHolder{
         TextView titleView;
+        RecyclerView recyclerView;
         Button button;
         WeakReference<ClickListener> listenerRef;
 

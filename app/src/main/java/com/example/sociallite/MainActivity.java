@@ -44,16 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button loginBtn = findViewById(R.id.signIn);
         loginBtn.setOnClickListener(view -> {
-            if (TextUtils.isEmpty(email.getText())){
-                this.email.setError("Email cannot be empty");
-                this.email.requestFocus();
-            }else if (TextUtils.isEmpty(password.getText())){
-                this.password.setError("Password cannot be empty");
-                this.password.requestFocus();
-            }
-            else {
-                loginUser();
-            }
+            startActivity(new Intent(MainActivity.this,LeaderboardActivity.class));
         });
         registerUser.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this,RegisterUser.class));
@@ -62,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this,ForgotPassword.class));
         });
     }
-
+    /*
     private void loginUser() {
             mAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -79,5 +70,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-    }
+    }*/
 }
