@@ -3,29 +3,30 @@ package com.example.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Challenge {
+
+    private static final AtomicInteger count = new AtomicInteger(0);
     private String id;
     private String title;
     private String creator;
-    private Date deadline;
-    private Date date_created;
+    private String deadline;
+    private String date_created;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    private String type;
     private String description;
 
     private List<String> participants;
 
-    public Challenge(String title, String creator) {
+    public Challenge(String title, String creator, String deadline, String date_created, String challengeType, String description) {
+        this.id = String.valueOf(count.incrementAndGet());
         this.title = title;
         this.creator = creator;
+        this.deadline = deadline;
+        this.date_created = date_created;
+        this.type = challengeType;
+        this.description = description;
     }
 
     public Challenge() {}
@@ -36,6 +37,18 @@ public class Challenge {
     public void setID(String id) {
         this.id = id;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
 
     public List<String> getParticipants() {
         return participants;
@@ -61,19 +74,19 @@ public class Challenge {
         this.creator = creator;
     }
 
-    public Date getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 
-    public Date getDate_created() {
+    public String getDate_created() {
         return date_created;
     }
 
-    public void setDate_created(Date date_created) {
+    public void setDate_created(String date_created) {
         this.date_created = date_created;
     }
 

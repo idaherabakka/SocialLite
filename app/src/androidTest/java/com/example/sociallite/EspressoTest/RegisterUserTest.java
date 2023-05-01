@@ -1,5 +1,6 @@
 package com.example.sociallite.EspressoTest;
 
+import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
@@ -7,9 +8,13 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasFocus;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import static com.example.sociallite.EditProfileActivity.isValidName;
+
 import android.view.View;
 
 import androidx.test.espresso.FailureHandler;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -35,12 +40,20 @@ public class RegisterUserTest {
     @Test
     public void createUser(){
         UUID id = UUID.randomUUID();
-        onView(withId(R.id.email)).perform(replaceText(id.toString() + "@123.no"));
+        onView(withId(R.id.firstName)).perform(replaceText(generateRandomName(8)));
+        closeSoftKeyboard();
+        onView(withId(R.id.lastName)).perform(replaceText(generateRandomName(8)));
+        closeSoftKeyboard();
+        onView(withId(R.id.email)).perform(replaceText(generateRandomName(8) + "@123.no"));
+        closeSoftKeyboard();
         onView(withId(R.id.password)).perform(replaceText("123456"));
+        closeSoftKeyboard();
         onView(withId(R.id.registerUser)).perform(click());
     }
     @Test
     public void invalidEmailError(){
+        onView(withId(R.id.firstName)).perform(replaceText(generateRandomName(8)));
+        onView(withId(R.id.lastName)).perform(replaceText(generateRandomName(8)));
         onView(withId(R.id.email)).perform(replaceText(""));
         onView(withId(R.id.password)).perform(replaceText("123456"));
         onView(withId(R.id.registerUser)).perform(click());
@@ -48,10 +61,31 @@ public class RegisterUserTest {
     }
     @Test
     public void toShortPasswordTest(){
+        onView(withId(R.id.firstName)).perform(replaceText(generateRandomName(8)));
+        onView(withId(R.id.lastName)).perform(replaceText(generateRandomName(8)));
         onView(withId(R.id.email)).perform(replaceText(  "12@123.no"));
         onView(withId(R.id.password)).perform(replaceText(""));
         onView(withId(R.id.registerUser)).perform(click());
         onView(withId(R.id.password)).check(matches(hasFocus()));
 
+    }
+
+    public static String generateRandomName(int length) {
+        String validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+        Random random = new Random();
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            char c = validChars.charAt(random.nextInt(validChars.length()));
+            builder.append(c);
+        }
+
+        String name = builder.toString().trim(); // remove leading/trailing spaces
+
+        if (isValidName(name)) {
+            return name; // return the generated name if it is valid
+        } else {
+            return generateRandomName(length); // try again recursively
+        }
     }
 }

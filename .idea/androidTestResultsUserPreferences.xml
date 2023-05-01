@@ -25,6 +25,7 @@
                   <entry key="61991585" value="120" />
                   <entry key="Duration" value="90" />
                   <entry key="OnePlus&#10; ONEPLUS A6003" value="120" />
+                  <entry key="Pixel_XL_API_33" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -67,6 +68,7 @@
                   <entry key="61991585" value="120" />
                   <entry key="Duration" value="90" />
                   <entry key="OnePlus&#10; ONEPLUS A6003" value="120" />
+                  <entry key="Pixel_XL_API_33" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -114,6 +116,17 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="1546319768">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="1554129567">
           <value>
             <AndroidTestResultsTableState>
@@ -129,6 +142,19 @@
           </value>
         </entry>
         <entry key="1974606971">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_XL_API_33" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="2102235867">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
