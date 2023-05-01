@@ -3,12 +3,18 @@ package com.example.sociallite;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.model.Challenge;
+import com.example.service.FirebaseDBService;
+import com.example.service.TeamProgressionAdapter;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -17,23 +23,46 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ProgressionActivity  extends AppCompatActivity {
-    BarChart barChart;
-
+    HorizontalBarChart barChart;
+    List<Challenge> challenges;
+    TeamProgressionAdapter adapter;
+    Challenge currentChallenge;
+    List<String> participants;
+    Random rand = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teamprogression);
+        FirebaseDBService dbService = new FirebaseDBService();
+        adapter = new TeamProgressionAdapter(getApplicationContext(), challenges, new TeamProgressionAdapter.MyAdapterListener() {
+            @Override
+            public void buttonOnClick(View v, int position, TextView id) {}
+        });
         barChart = findViewById(R.id.barChart_view);
         showBarChart(barChart);
+        Bundle extras = getIntent().getExtras();
+        String value = "Title";
+        if (extras != null) {
+            value = extras.getString("challengeID");
+            currentChallenge = dbService.getChallenge(value);
 
+            //The key argument here must match that used in the other activity
+        }
+        else {currentChallenge = new Challenge();}
+
+        TextView title = findViewById(R.id.Title);
+        title.setText(currentChallenge.getTitle());
+        participants = currentChallenge.getParticipants();
         Button backButton = findViewById(R.id.back);
         backButton.setOnClickListener(view -> {
             startActivity(new Intent(ProgressionActivity.this,OverviewActivity.class));
@@ -42,14 +71,14 @@ public class ProgressionActivity  extends AppCompatActivity {
 
 
     }
-    private void showBarChart(BarChart barChart){
+    private void showBarChart(HorizontalBarChart barChart){
         ArrayList<Double> valueList = new ArrayList<Double>();
         ArrayList<BarEntry> entries = new ArrayList<>();
-        String title = "Title";
+        String title = "Steps";
 
         //input data
-        for(int i = 0; i < 6; i++){
-            valueList.add(i * 100.1);
+        for(int i = 0; i < 7;i++) {
+            valueList.add(i*1000.1);
         }
 
         //fit the data into a bar
@@ -60,7 +89,7 @@ public class ProgressionActivity  extends AppCompatActivity {
 
         BarDataSet barDataSet = new BarDataSet(entries, title);
         initBarDataSet(barDataSet);
-
+        initBarChart();
         BarData data = new BarData(barDataSet);
         barChart.setData(data);
         barChart.invalidate();
@@ -83,7 +112,7 @@ public class ProgressionActivity  extends AppCompatActivity {
 
     private void initBarDataSet(BarDataSet barDataSet){
         //Changing the color of the bar
-        barDataSet.setColor(Color.parseColor("#304567"));
+        barDataSet.setColor(Color.parseColor("#E76B36"));
         //Setting the size of the form in the legend
         barDataSet.setFormSize(15f);
         //showing the value of the bar, default true if not set
@@ -110,6 +139,12 @@ public class ProgressionActivity  extends AppCompatActivity {
         barChart.animateX(1000);
 
         XAxis xAxis = barChart.getXAxis();
+        final String[] labels = new String[] {"You","Thomas", "Daniel", "Olesya", "Maria", "Ida",
+                "Lisa"};
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+
         //change the position of x-axis to the bottom
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         //set the horizontal distance of the grid line

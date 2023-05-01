@@ -31,6 +31,7 @@
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".JoinChallengeActivity"/>
         <activity android:name=".CreateChallengeActivity"/>
+        <activity android:name=".ProgressionActivity"/>
     </application>
 
 </manifest>
