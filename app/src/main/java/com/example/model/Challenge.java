@@ -1,5 +1,7 @@
 package com.example.model;
 
+import com.example.service.FirebaseDBService;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Challenge {
 
-    private static final AtomicInteger count = new AtomicInteger(0);
+    //private static final AtomicInteger count = new AtomicInteger(0);
     private String id;
     private String title;
     private String creator;
@@ -16,11 +18,14 @@ public class Challenge {
 
     private String type;
     private String description;
-
     private List<String> participants;
 
     public Challenge(String title, String creator, String deadline, String date_created, String challengeType, String description) {
-        this.id = String.valueOf(count.incrementAndGet());
+        FirebaseDBService db = new FirebaseDBService();
+        int count = db.getAllChallenges().size() + 1;
+
+        //this.id = String.valueOf(count.incrementAndGet());
+        this.id = Integer.toString(count);
         this.title = title;
         this.creator = creator;
         this.deadline = deadline;

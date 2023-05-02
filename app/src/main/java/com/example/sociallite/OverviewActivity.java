@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.model.Challenge;
+import com.example.model.User;
 import com.example.service.ChallengeOverviewAdapter;
 import com.example.service.FirebaseDBService;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +30,20 @@ public class OverviewActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         FirebaseDBService dbService = new FirebaseDBService();
-        challenges = dbService.getAllChallenges();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String currentUser = mAuth.getCurrentUser().getEmail();
+        User user = dbService.getUser(currentUser);
 
+        challenges = dbService.getAllChallenges();
+        List<Challenge> userChallenges = new ArrayList<>();
+
+        for (Challenge chl : challenges) {
+            if (user.getChallengesJoined().contains(chl.getID())) {
+                userChallenges.add(chl);
+            }
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), challenges, new ChallengeOverviewAdapter.MyAdapterListener() {
+        ChallengeOverviewAdapter adapter = new ChallengeOverviewAdapter(getApplicationContext(), userChallenges, new ChallengeOverviewAdapter.MyAdapterListener() {
             @Override
             public void buttonOnClick(View v, int position, TextView id) {
                 String challengeID = (String) id.getText();
